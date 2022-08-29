@@ -1,14 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
+import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./App.routes";
+import { AuthRoutes } from "./Auth.routes";
 
 export function Router() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  const [auth, setAuth] = useState(true);
+
+  return <BrowserRouter>{auth ? <AppRoutes /> : <AuthRoutes />}</BrowserRouter>;
 }
