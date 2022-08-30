@@ -7,6 +7,7 @@ import { BsCalendarPlus, BsCalendarX, BsInstagram } from "react-icons/bs";
 import { TbGauge } from "react-icons/tb";
 import { FaFacebook } from "react-icons/fa";
 import { FiChrome } from "react-icons/fi";
+import { Footer } from "../../components/Footer";
 
 const Home: React.FC = () => {
   const [isLoading, setIsloading] = React.useState(false);
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
             />
 
             <ShortcutCard
+              link="/cancelar-aula"
               title="Cancelar aula no sábado"
               icon={<BsCalendarX size={26} />}
             />
@@ -36,6 +38,7 @@ const Home: React.FC = () => {
             <ShortcutCard title="Facebook" icon={<FaFacebook size={26} />} />
             <ShortcutCard title="Google" icon={<FiChrome size={26} />} />
           </ShortCuts>
+          <Footer />
         </Container>
       )}
     </>

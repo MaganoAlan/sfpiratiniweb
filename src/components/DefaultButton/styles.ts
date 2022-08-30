@@ -11,8 +11,8 @@ export const Button = styled.button`
   border-radius: 5px;
   width: 15vw;
   min-width: 10vw;
-  height: 7vh;
-  margin: auto;
+  height: 6vh;
+  margin: 0 auto;
   cursor: pointer;
 
   &:hover {
@@ -21,6 +21,6 @@ export const Button = styled.button`
   }
 
   @media (max-width: 700px) {
-    min-width: 70vw;
+    min-width: 62vw;
   }
 `;

@@ -1,4 +1,5 @@
 import { getAuth } from "firebase/auth";
+import swal from "sweetalert";
 import { Container, LogoImg, TopInfo, UserInfo, UserName } from "./styles";
 import Logo from "../../assets/logo_g.jpg";
 import { GiExitDoor } from "react-icons/gi";
@@ -7,8 +8,19 @@ export default function Header() {
   const auth = getAuth();
 
   function handleSignOut() {
-    auth.signOut().then(() => {
-      window.alert("Você foi desconectado");
+    swal({
+      title: "Sair do App?",
+      text: "Tem certeza que deseja sair do app?",
+      icon: "warning",
+      dangerMode: true,
+      buttons: ["Cancelar", true],
+    }).then((sair) => {
+      if (sair) {
+        auth.signOut().then(() => {
+          window.alert("Você foi desconectado");
+        });
+      }
+      return;
     });
   }
   return (
