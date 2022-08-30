@@ -1,8 +1,16 @@
+import { getAuth } from "firebase/auth";
 import { Container, LogoImg, TopInfo, UserInfo, UserName } from "./styles";
 import Logo from "../../assets/logo_g.jpg";
 import { GiExitDoor } from "react-icons/gi";
 
 export default function Header() {
+  const auth = getAuth();
+
+  function handleSignOut() {
+    auth.signOut().then(() => {
+      window.alert("Você foi desconectado");
+    });
+  }
   return (
     <Container>
       <TopInfo>
@@ -12,7 +20,11 @@ export default function Header() {
       <UserInfo>
         <UserName>Olá, Alan Magano</UserName>
         <span>Sair</span>
-        <GiExitDoor style={{ cursor: "pointer" }} size={26} />
+        <GiExitDoor
+          onClick={handleSignOut}
+          style={{ cursor: "pointer" }}
+          size={26}
+        />
       </UserInfo>
     </Container>
   );

@@ -19,6 +19,7 @@ const Home: React.FC = () => {
           <Header />
           <ShortCuts>
             <ShortcutCard
+              link="/aula-de-sabado"
               title="Agendar aula no sábado"
               icon={<BsCalendarPlus size={26} />}
             />

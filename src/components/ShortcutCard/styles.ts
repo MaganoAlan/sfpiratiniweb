@@ -5,12 +5,11 @@ export const Card = styled.div`
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.varela};
   height: 15vh;
-  width: 25vw;
+  width: 30vw;
   margin: auto;
   margin-top: 2%;
   display: flex;
   align-items: center;
-
   padding: 2%;
   border-radius: 10px;
   cursor: pointer;

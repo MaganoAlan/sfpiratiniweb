@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Container, Img, LoginCard, Subtitle } from "./styles";
 import LogoG from "../../assets/logo_g.jpg";
 import DefaultButton from "../../components/DefaultButton";
@@ -9,8 +10,18 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(email);
-  console.log(password);
+  function handleSigIn() {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("user", user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
 
   return (
     <Container>
@@ -35,12 +46,7 @@ const Login: React.FC = () => {
             setPassword(e.target.value)
           }
         />
-        <DefaultButton
-          title="Login"
-          onClick={() => {
-            window.location.href = "/home";
-          }}
-        />
+        <DefaultButton title="Login" onClick={handleSigIn} />
       </LoginCard>
     </Container>
   );
