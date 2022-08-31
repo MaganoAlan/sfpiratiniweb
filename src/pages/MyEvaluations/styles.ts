@@ -1,19 +1,24 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
-  h1 {
-    font-family: ${({ theme }) => theme.fonts.alata};
-    margin-top: 2%;
+  span {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
 export const Image = styled.img`
-  width: 60vw;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;

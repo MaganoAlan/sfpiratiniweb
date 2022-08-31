@@ -30,3 +30,8 @@ export const Title = styled.span`
   width: 100%;
   text-align: center;
 `;
+
+export const Link = styled.a`
+  text-decoration: none;
+  color: inherit;
+`;

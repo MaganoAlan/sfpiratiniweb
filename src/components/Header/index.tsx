@@ -3,6 +3,7 @@ import swal from "sweetalert";
 import { Container, LogoImg, TopInfo, UserInfo, UserName } from "./styles";
 import Logo from "../../assets/logo_g.jpg";
 import { GiExitDoor } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   userName: string;
@@ -10,6 +11,7 @@ type Props = {
 
 export default function Header({ userName }: Props) {
   const auth = getAuth();
+  const navigate = useNavigate();
 
   function handleSignOut() {
     swal({
@@ -21,7 +23,8 @@ export default function Header({ userName }: Props) {
     }).then((sair) => {
       if (sair) {
         auth.signOut().then(() => {
-          window.alert("Você foi desconectado");
+          swal("Você foi desconectado");
+          navigate("/");
         });
       }
       return;
@@ -38,7 +41,7 @@ export default function Header({ userName }: Props) {
         <span>Sair</span>
         <GiExitDoor
           onClick={handleSignOut}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", marginLeft: "10px" }}
           size={26}
         />
       </UserInfo>

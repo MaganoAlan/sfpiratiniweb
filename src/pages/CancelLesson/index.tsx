@@ -13,12 +13,14 @@ import { getAuth } from "firebase/auth";
 import DefaultButton from "../../components/DefaultButton";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 export function CancelLesson() {
   const [sat, setSat] = useState<any>([]);
   const [uid, setUid] = useState<any>("");
   const firestore = getFirestore();
   const auth = getAuth();
+  const navigate = useNavigate();
 
   const saturdayRef = collection(firestore, "saturday");
   const q = query(saturdayRef, where("ownerId", "==", uid));
@@ -45,9 +47,7 @@ export function CancelLesson() {
 
   async function handleCancel(id: string) {
     await deleteDoc(doc(firestore, "saturday", id));
-    swal("Aula cancelada com sucesso!").then(
-      () => (window.location.href = "/")
-    );
+    swal("Aula cancelada com sucesso!").then(() => navigate("/home"));
   }
   return (
     <Container>

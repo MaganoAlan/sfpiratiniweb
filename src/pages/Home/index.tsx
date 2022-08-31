@@ -20,6 +20,8 @@ export function Home() {
     setIsloading(false);
   }, []);
 
+  console.log(auth.currentUser);
+
   return (
     <>
       {isLoading ? (
@@ -29,23 +31,36 @@ export function Home() {
           <Header userName={userName} />
           <ShortCuts>
             <ShortcutCard
-              link="/aula-de-sabado"
+              path="/aula-de-sabado"
               title="Agendar aula no sábado"
               icon={<BsCalendarPlus size={26} />}
             />
 
             <ShortcutCard
-              link="/cancelar-aula"
+              path="/cancelar-aula"
               title="Cancelar aula no sábado"
               icon={<BsCalendarX size={26} />}
             />
             <ShortcutCard
+              path="/minhas-avaliacoes"
               title="Minhas avaliações"
               icon={<TbGauge size={26} />}
             />
-            <ShortcutCard title="Instagram" icon={<BsInstagram size={26} />} />
-            <ShortcutCard title="Facebook" icon={<FaFacebook size={26} />} />
-            <ShortcutCard title="Google" icon={<FiChrome size={26} />} />
+            <ShortcutCard
+              link="https://www.instagram.com/sfitnesspiratini/"
+              title="Instagram"
+              icon={<BsInstagram size={26} />}
+            />
+            <ShortcutCard
+              link="https://www.facebook.com/sfitnesspiratini"
+              title="Facebook"
+              icon={<FaFacebook size={26} />}
+            />
+            <ShortcutCard
+              link="https://linktr.ee/sfitnesspiratini"
+              title="Google"
+              icon={<FiChrome size={26} />}
+            />
           </ShortCuts>
           <Footer />
         </Container>

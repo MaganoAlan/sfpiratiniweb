@@ -1,18 +1,21 @@
 import { Container } from "./styles";
 import { TbArrowBackUp } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   title: string;
 };
 
 export function SecondaryHeader({ title }: Props) {
-  function handleGoBack() {
-    window.location.href = "/home";
-  }
+  const navigate = useNavigate();
 
   return (
     <Container>
-      <TbArrowBackUp size={26} onClick={handleGoBack} />
+      <TbArrowBackUp
+        style={{ cursor: "pointer" }}
+        size={26}
+        onClick={() => navigate("/home")}
+      />
       <h2>{title}</h2>
     </Container>
   );

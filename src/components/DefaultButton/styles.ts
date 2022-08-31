@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.primary[600]};
-  color: ${({ theme }) => theme.colors.white};
-  font-family: ${({ theme }) => theme.fonts.alata};
+type BtnProps = {
+  background?: string;
+};
+
+export const Button = styled.button<BtnProps>`
+  background-color: ${({ theme, background }) =>
+    background === "primary" ? theme.colors.primary[600] : "lightgray"};
+  color: ${({ theme, background }) =>
+    background === "primary" ? "white" : theme.colors.primary[600]};
+  font-family: ${({ theme }) => theme.fonts.varela};
   font-weight: 600;
   font-size: 16px;
   padding: 5px;

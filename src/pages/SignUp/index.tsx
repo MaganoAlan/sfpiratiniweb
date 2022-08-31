@@ -1,35 +1,49 @@
 import React, { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Container, Img, LoginCard, Subtitle } from "./styles";
 import LogoG from "../../assets/logo_g.jpg";
 import DefaultButton from "../../components/DefaultButton";
 import DefaultInput from "../../components/DefaultInput";
 import { Envelope, Key } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-export function Login() {
+export function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
+  const auth = getAuth();
   const navigate = useNavigate();
 
-  function handleSigIn() {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
+  function handleCreate() {
+    if (!passwordConfirm || !password || !email) {
+      Swal.fire("Preencha todos os campos!");
+      return;
+    }
+    if (passwordConfirm !== password) {
+      Swal.fire("As senhas não são iguais!");
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("user", user);
+        Swal.fire("Usuário criado com sucesso!");
+        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log("error", errorCode, errorMessage);
+        Swal.fire("Algo deu errado");
       });
   }
 
   return (
     <Container>
       <Img src={LogoG} alt="Imagem de logo" />
-      <Subtitle>Unidade Piratini</Subtitle>
+      <Subtitle>Criar conta de usuário</Subtitle>
       <LoginCard>
         <DefaultInput
           type="email"
@@ -49,12 +63,21 @@ export function Login() {
             setPassword(e.target.value)
           }
         />
-        <DefaultButton title="Login" onClick={handleSigIn} />
+        <DefaultInput
+          type="password"
+          icon={<Key size={32} color="#7C7C8A" />}
+          placeholder="Repita a Senha"
+          value={passwordConfirm}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPasswordConfirm(e.target.value)
+          }
+        />
+        <DefaultButton title="Cadastrar" onClick={handleCreate} />
         <div className="btn">
           <DefaultButton
-            title="Cadastrar"
             background="secondary"
-            onClick={() => navigate("/cadastrar")}
+            title="Cancelar"
+            onClick={() => navigate("/")}
           />
         </div>
       </LoginCard>

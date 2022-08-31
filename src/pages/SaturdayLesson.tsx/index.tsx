@@ -16,9 +16,11 @@ import { ISaturdayDates } from "../../DTOs/SaturdayDates";
 import DefaultInput from "../../components/DefaultInput";
 import DefaultButton from "../../components/DefaultButton";
 import { Divider } from "../../components/Divider";
+import { useNavigate } from "react-router-dom";
 
 export function SaturdayLesson() {
   const auth = getAuth();
+  const navigate = useNavigate();
   const firestore = getFirestore();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +54,7 @@ export function SaturdayLesson() {
     })
       .then(() => {
         swal("Aula agendada com sucesso!").then(() => {
-          window.location.href = "/";
+          navigate("/home");
         });
       })
       .catch((error) => {
@@ -123,7 +125,7 @@ export function SaturdayLesson() {
       <span>Verificar data</span>
 
       <Select onChange={(e: any) => setDat(e.target.value)}>
-        <option value="" selected>
+        <option value="" defaultValue="Selecione">
           Selecione
         </option>
         {saturdayDates &&

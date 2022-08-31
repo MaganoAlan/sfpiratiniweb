@@ -18,7 +18,8 @@
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.4.29"
   },
   "devDependencies": {
     "@types/firebase": "^3.2.1",
