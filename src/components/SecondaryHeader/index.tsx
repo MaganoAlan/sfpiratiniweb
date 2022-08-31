@@ -7,9 +7,7 @@ type Props = {
 
 export function SecondaryHeader({ title }: Props) {
   function handleGoBack() {
-    window.location.href = "/";
-    // window.alert()
-    // auth.GoBack()
+    window.location.href = "/home";
   }
 
   return (

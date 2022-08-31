@@ -120,7 +120,7 @@ export function SaturdayLesson() {
   return (
     <Container>
       <SecondaryHeader title="Agendar aula" />
-      <span>verificar data</span>
+      <span>Verificar data</span>
 
       <Select onChange={(e: any) => setDat(e.target.value)}>
         <option value="" selected>

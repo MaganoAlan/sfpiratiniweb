@@ -4,7 +4,11 @@ import { Container, LogoImg, TopInfo, UserInfo, UserName } from "./styles";
 import Logo from "../../assets/logo_g.jpg";
 import { GiExitDoor } from "react-icons/gi";
 
-export default function Header() {
+type Props = {
+  userName: string;
+};
+
+export default function Header({ userName }: Props) {
   const auth = getAuth();
 
   function handleSignOut() {
@@ -30,7 +34,7 @@ export default function Header() {
         <h2>Studio Fitness Piratini</h2>
       </TopInfo>
       <UserInfo>
-        <UserName>Olá, Alan Magano</UserName>
+        <UserName>Olá, {userName}</UserName>
         <span>Sair</span>
         <GiExitDoor
           onClick={handleSignOut}

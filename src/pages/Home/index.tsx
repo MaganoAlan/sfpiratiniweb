@@ -1,23 +1,32 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Container, ShortCuts } from "./styles";
+import { getAuth } from "firebase/auth";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import ShortcutCard from "../../components/ShortcutCard";
+import { Footer } from "../../components/Footer";
 import { BsCalendarPlus, BsCalendarX, BsInstagram } from "react-icons/bs";
 import { TbGauge } from "react-icons/tb";
 import { FaFacebook } from "react-icons/fa";
 import { FiChrome } from "react-icons/fi";
-import { Footer } from "../../components/Footer";
 
-const Home: React.FC = () => {
-  const [isLoading, setIsloading] = React.useState(false);
+export function Home() {
+  const auth = getAuth();
+  const [userName, setUserName] = useState("");
+  const [isLoading, setIsloading] = useState(true);
+
+  useEffect(() => {
+    setUserName(auth.currentUser?.displayName || "");
+    setIsloading(false);
+  }, []);
+
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
         <Container>
-          <Header />
+          <Header userName={userName} />
           <ShortCuts>
             <ShortcutCard
               link="/aula-de-sabado"
@@ -43,6 +52,4 @@ const Home: React.FC = () => {
       )}
     </>
   );
-};
-
-export default Home;
+}

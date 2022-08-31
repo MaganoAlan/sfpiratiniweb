@@ -6,6 +6,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  span {
+    font-family: ${({ theme }) => theme.fonts.varela};
+    font-size: 18px;
+  }
 `;
 
 export const Select = styled.select`
