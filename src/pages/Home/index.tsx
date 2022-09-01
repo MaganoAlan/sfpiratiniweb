@@ -52,19 +52,21 @@ export function Home() {
   }, [uid]);
 
   useEffect(() => {
-    const docRef = collection(firestore, "vencimento");
-    const q = query(docRef, where("matricula", "==", mat));
-    let response: any = [];
-    async function getMonthly() {
-      const res = await getDocs(q);
-      res.forEach((doc) => {
-        const data = doc.data();
-        response.push(data);
-      });
+    if (mat) {
+      const docRef = collection(firestore, "vencimento");
+      const q = query(docRef, where("matricula", "==", mat));
+      let response: any = [];
+      async function getMonthly() {
+        const res = await getDocs(q);
+        res.forEach((doc) => {
+          const data = doc.data();
+          response.push(data);
+        });
 
-      setMonthly(response[0]?.dia);
+        setMonthly(response[0]?.dia);
+      }
+      getMonthly();
     }
-    getMonthly();
   }, [mat]);
 
   console.log("vencimento", monthly);

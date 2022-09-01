@@ -88,20 +88,22 @@ export function MyEvaluations() {
   }, [mat, selectedDate, path]);
 
   useEffect(() => {
-    const datasAvaliacaoRef = collection(firestore, "datasAvaliacao");
-    const q = query(datasAvaliacaoRef, where("matricula", "==", mat));
-    let response: any = [];
-    async function getNext() {
-      const res = await getDocs(q);
-      res.forEach((doc) => {
-        const data = doc.data();
-        response.push(data);
-      });
+    if (mat) {
+      const datasAvaliacaoRef = collection(firestore, "datasAvaliacao");
+      const q = query(datasAvaliacaoRef, where("matricula", "==", mat));
+      let response: any = [];
+      async function getNext() {
+        const res = await getDocs(q);
+        res.forEach((doc) => {
+          const data = doc.data();
+          response.push(data);
+        });
 
-      setNextEval(response[0]?.dia);
+        setNextEval(response[0]?.dia);
+      }
+      getNext();
     }
-    getNext();
-  }, []);
+  }, [mat]);
   console.log("next", nextEval);
   return (
     <Container>
