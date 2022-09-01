@@ -32,6 +32,7 @@ export function MyEvaluations() {
   const [selectedDate, setSelectedDate] = useState<any>("");
   const [path, setPath] = useState<any>("");
   const [url, setUrl] = useState<any>("");
+  const [nextEval, setNextEval] = useState<any>("");
 
   useEffect(() => {
     const user = auth.currentUser?.displayName;
@@ -45,10 +46,7 @@ export function MyEvaluations() {
         const data = doc.data();
         response.push(data);
       });
-      if (user === "Wagner Cardoso") {
-        setMat("");
-        return;
-      }
+
       setMat(response[0]?.matricula);
     }
     getMat();
@@ -89,11 +87,34 @@ export function MyEvaluations() {
     teste();
   }, [mat, selectedDate, path]);
 
+  useEffect(() => {
+    const datasAvaliacaoRef = collection(firestore, "datasAvaliacao");
+    const q = query(datasAvaliacaoRef, where("matricula", "==", mat));
+    let response: any = [];
+    async function getNext() {
+      const res = await getDocs(q);
+      res.forEach((doc) => {
+        const data = doc.data();
+        response.push(data);
+      });
+
+      setNextEval(response[0]?.dia);
+    }
+    getNext();
+  }, []);
+  console.log("next", nextEval);
   return (
     <Container>
       <SecondaryHeader title="Minhas avaliações" />
+      {nextEval !== "" ? (
+        <span className="next">
+          Sua próxima avaliação pode ser agendada a partir do dia {nextEval}
+        </span>
+      ) : (
+        ""
+      )}
       <span>Matricula:</span>
-      <DefaultInput value={mat} onChange={(e) => setMat(e.target.value)} />
+      <DefaultInput value={mat} onChange={() => {}} />
       <DefaultButton title="Ver datas" onClick={getDates} />
       {evalDates ? (
         <div className="main">

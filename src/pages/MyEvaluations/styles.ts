@@ -10,6 +10,12 @@ export const Container = styled.div`
     margin: 10px 0;
   }
 
+  .next {
+    text-align: center;
+    padding: 0px 5px;
+    color: ${({ theme }) => theme.colors.green[500]};
+  }
+
   .main {
     display: flex;
     flex-direction: column;

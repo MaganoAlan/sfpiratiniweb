@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { Container, ShortCuts } from "./styles";
 import { getAuth } from "firebase/auth";
+import {
+  getFirestore,
+  doc,
+  getDocs,
+  where,
+  query,
+  collection,
+} from "firebase/firestore";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import ShortcutCard from "../../components/ShortcutCard";
@@ -12,8 +20,12 @@ import { FiChrome } from "react-icons/fi";
 
 export function Home() {
   const auth = getAuth();
+  const firestore = getFirestore();
   const [userName, setUserName] = useState("");
   const [isLoading, setIsloading] = useState(true);
+  const [uid, setUid] = useState<any>("");
+  const [mat, setMat] = useState<any>("");
+  const [monthly, setMonthly] = useState<any>("");
 
   useEffect(() => {
     setUserName(auth.currentUser?.displayName || "");
@@ -22,6 +34,41 @@ export function Home() {
 
   console.log(auth.currentUser);
 
+  useEffect(() => {
+    setUid(auth.currentUser?.uid);
+    const saturdayRef = collection(firestore, "alunos");
+    const q = query(saturdayRef, where("id", "==", uid));
+    let response: any = [];
+    async function getMat() {
+      const res = await getDocs(q);
+      res.forEach((doc) => {
+        const data = doc.data();
+        response.push(data);
+      });
+
+      setMat(response[0]?.matricula);
+    }
+    getMat();
+  }, [uid]);
+
+  useEffect(() => {
+    const docRef = collection(firestore, "vencimento");
+    const q = query(docRef, where("matricula", "==", mat));
+    let response: any = [];
+    async function getMonthly() {
+      const res = await getDocs(q);
+      res.forEach((doc) => {
+        const data = doc.data();
+        response.push(data);
+      });
+
+      setMonthly(response[0]?.dia);
+    }
+    getMonthly();
+  }, [mat]);
+
+  console.log("vencimento", monthly);
+
   return (
     <>
       {isLoading ? (
@@ -29,6 +76,22 @@ export function Home() {
       ) : (
         <Container>
           <Header userName={userName} />
+          {monthly !== "" ? (
+            <div
+              style={{
+                textAlign: "center",
+                margin: "auto",
+                marginTop: "2%",
+                padding: 5,
+                color: "green",
+                fontSize: "18px",
+              }}
+            >
+              Sua mensalidade vence todo dia {monthly}
+            </div>
+          ) : (
+            ""
+          )}
           <ShortCuts>
             <ShortcutCard
               path="/aula-de-sabado"
