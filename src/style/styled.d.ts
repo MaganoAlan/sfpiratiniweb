@@ -29,7 +29,7 @@ declare module "styled-components" {
     };
     fonts: {
       varela: string;
-      alata: string;
+      roboto: string;
     };
   }
 }

@@ -15,8 +15,10 @@ import ShortcutCard from "../../components/ShortcutCard";
 import { Footer } from "../../components/Footer";
 import { BsCalendarPlus, BsCalendarX, BsInstagram } from "react-icons/bs";
 import { TbGauge } from "react-icons/tb";
+import { GiWeightLiftingUp } from "react-icons/gi";
 import { FaFacebook } from "react-icons/fa";
 import { FiChrome } from "react-icons/fi";
+import { MdOutlineWaterDrop } from "react-icons/md";
 
 export function Home() {
   const auth = getAuth();
@@ -31,8 +33,6 @@ export function Home() {
     setUserName(auth.currentUser?.displayName || "");
     setIsloading(false);
   }, []);
-
-  console.log(auth.currentUser);
 
   useEffect(() => {
     setUid(auth.currentUser?.uid);
@@ -68,8 +68,6 @@ export function Home() {
       getMonthly();
     }
   }, [mat]);
-
-  console.log("vencimento", monthly);
 
   return (
     <>
@@ -110,6 +108,16 @@ export function Home() {
               path="/minhas-avaliacoes"
               title="Minhas avaliações"
               icon={<TbGauge size={26} />}
+            />
+            <ShortcutCard
+              path="/water"
+              title="Cálculo de água"
+              icon={<MdOutlineWaterDrop size={26} />}
+            />
+            <ShortcutCard
+              path="/anual"
+              title="Avaliação anual"
+              icon={<GiWeightLiftingUp size={26} />}
             />
             <ShortcutCard
               link="https://www.instagram.com/sfitnesspiratini/"

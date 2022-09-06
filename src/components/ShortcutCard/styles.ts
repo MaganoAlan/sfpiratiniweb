@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Card = styled.div`
   background-color: ${({ theme }) => theme.colors.primary[600]};
   color: ${({ theme }) => theme.colors.white};
-  font-family: ${({ theme }) => theme.fonts.varela};
+  font-family: ${({ theme }) => theme.fonts.roboto};
   height: 15vh;
   width: 30vw;
   margin: auto;

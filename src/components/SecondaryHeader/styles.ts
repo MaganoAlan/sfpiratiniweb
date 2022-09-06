@@ -11,7 +11,7 @@ export const Container = styled.div`
   align-items: center;
 
   h2 {
-    font-family: ${({ theme }) => theme.fonts.alata};
+    font-family: ${({ theme }) => theme.fonts.roboto};
     width: 100%;
     text-align: center;
   }

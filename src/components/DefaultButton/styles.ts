@@ -9,7 +9,7 @@ export const Button = styled.button<BtnProps>`
     background === "primary" ? theme.colors.primary[600] : "lightgray"};
   color: ${({ theme, background }) =>
     background === "primary" ? "white" : theme.colors.primary[600]};
-  font-family: ${({ theme }) => theme.fonts.varela};
+  font-family: ${({ theme }) => theme.fonts.roboto};
   font-weight: 600;
   font-size: 16px;
   padding: 5px;

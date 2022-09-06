@@ -26,6 +26,6 @@ export default {
   },
   fonts: {
     varela: "'Varela Round', sans-serif",
-    alata: "'Alata', sans-serif",
+    roboto: "'Roboto', sans-serif;",
   },
 };

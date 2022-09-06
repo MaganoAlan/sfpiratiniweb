@@ -15,6 +15,10 @@ export const TopInfo = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+
+  h2 {
+    font-family: ${({ theme }) => theme.fonts.roboto};
+  }
 `;
 export const UserInfo = styled.div`
   display: flex;
