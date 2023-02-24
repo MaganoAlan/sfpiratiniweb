@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { Annual } from "../pages/Annual";
 import { CancelLesson } from "../pages/CancelLesson";
 import { Home } from "../pages/Home";
 import { MyEvaluations } from "../pages/MyEvaluations";
@@ -15,7 +14,6 @@ export function AppRoutes() {
       <Route path="/aula-de-sabado" element={<SaturdayLesson />} />
       <Route path="/cancelar-aula" element={<CancelLesson />} />
       <Route path="/minhas-avaliacoes" element={<MyEvaluations />} />
-      <Route path="/anual" element={<Annual />} />
       <Route path="/water" element={<Water />} />
     </Routes>
   );

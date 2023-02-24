@@ -9,7 +9,6 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { IMaxStudents } from "../../DTOs/MaxStudents";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import swal from "sweetalert";
 import { ISaturdayDates } from "../../DTOs/SaturdayDates";
@@ -33,10 +32,37 @@ export function SaturdayLesson() {
   const [dat, setDat] = useState("");
   const [students, setStudents] = useState([]);
   const [saturdayDates, setSaturdayDates] = useState<ISaturdayDates[]>([]);
-  const [maxStudents, setMaxStudents] = useState<IMaxStudents[]>([]);
+
+  const [maxRange1, setMaxRange1] = useState("");
+  const [maxRange2, setMaxRange2] = useState("");
+  const [maxRange3, setMaxRange3] = useState("");
+  const [maxRange4, setMaxRange4] = useState("");
+
+  const [range, setRange] = useState("");
+
+  const inRange1 = students.filter(
+    (students: any) => students.horario === "range1"
+  );
+  const inRange2 = students.filter(
+    (students: any) => students.horario === "range2"
+  );
+  const inRange3 = students.filter(
+    (students: any) => students.horario === "range3"
+  );
+  const inRange4 = students.filter(
+    (students: any) => students.horario === "range4"
+  );
 
   function handleVerify() {
-    if (students.length >= maxStudents[0].max_students) {
+    if (range === "") {
+      return swal("Selecione um horário.");
+    }
+    if (
+      (range === "range1" && inRange1.length >= Number(maxRange1)) ||
+      (range === "range2" && inRange2.length >= Number(maxRange2)) ||
+      (range === "range3" && inRange3.length >= Number(maxRange3)) ||
+      (range === "range4" && inRange4.length >= Number(maxRange4))
+    ) {
       setAvailable(false);
       return swal("Não há mais vagas disponíveis");
     }
@@ -84,8 +110,6 @@ export function SaturdayLesson() {
     getSat();
   }, [dat]);
 
-  console.log("alunos nessa data", students);
-
   useEffect(() => {
     // ver datas disponíveis
     async function getSats() {
@@ -110,19 +134,20 @@ export function SaturdayLesson() {
       resSnapshot.forEach((doc) => {
         response.push(doc.data());
       });
-      setMaxStudents(response);
+      setMaxRange1(response[0]?.max_range_1);
+      setMaxRange2(response[0]?.max_range_2);
+      setMaxRange3(response[0]?.max_range_3);
+      setMaxRange4(response[0]?.max_range_4);
     }
     getMax();
   }, [dat]);
 
-  console.log("saturdayDates", saturdayDates);
-  console.log("data selecionada", dat);
-  console.log("maximo", maxStudents[0]?.max_students);
+  console.log("range", range);
 
   return (
     <Container>
       <SecondaryHeader title="Agendar aula" />
-      <span>Verificar data</span>
+      <span>Selecione a data:</span>
 
       <Select onChange={(e: any) => setDat(e.target.value)}>
         <option value="" defaultValue="Selecione">
@@ -133,6 +158,35 @@ export function SaturdayLesson() {
             <option key={index} value={date.date}>
               {date.date}
             </option>
+          ))}
+      </Select>
+
+      <span>Selecione o horário:</span>
+
+      <Select onChange={(e: any) => setRange(e.target.value)}>
+        <option value="" defaultValue="Selecione">
+          Selecione
+        </option>
+        {saturdayDates &&
+          saturdayDates.map((date: any, index) => (
+            <>
+              <option key={0} value={"range1"}>
+                {date.range_1 && "9:30h às 10:30h"}
+                {date.free_range1 && " (LIVRE)"}
+              </option>
+              <option key={1} value={"range2"}>
+                {date.range_2 && "11:00h às 12:00h"}
+                {date.free_range2 && " (LIVRE)"}
+              </option>
+              <option key={2} value={"range3"}>
+                {date.range_3 && "13:30h às 14:30h"}
+                {date.free_range3 && " (LIVRE)"}
+              </option>
+              <option key={3} value={"range4"}>
+                {date.range_4 && "15:00 às 16:00h"}
+                {date.free_range4 && " (LIVRE)"}
+              </option>
+            </>
           ))}
       </Select>
       <DefaultButton title="Ver disponibilidade" onClick={handleVerify} />

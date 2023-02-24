@@ -13,7 +13,7 @@ export const Res = styled.span`
   margin-top: 5%;
   width: 100%;
   padding: 0 5%;
-  text-align: justify;
+  text-align: center;
   font-family: ${({ theme }) => theme.fonts.varela};
   font-size: 18px;
   font-weight: 600;

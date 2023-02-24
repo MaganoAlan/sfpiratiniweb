@@ -17,7 +17,7 @@ export const Button = styled.button<BtnProps>`
   border-radius: 5px;
   width: 15vw;
   min-width: 10vw;
-  height: 6vh;
+  height: 5vh;
   margin: 0 auto;
   cursor: pointer;
 
@@ -27,6 +27,6 @@ export const Button = styled.button<BtnProps>`
   }
 
   @media (max-width: 700px) {
-    min-width: 62vw;
+    min-width: 54vw;
   }
 `;

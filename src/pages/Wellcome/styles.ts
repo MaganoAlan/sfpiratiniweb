@@ -9,7 +9,7 @@ export const Container = styled.div`
   justify-content: center;
 
   h1 {
-    font-family: ${({ theme }) => theme.fonts.alata};
+    font-family: ${({ theme }) => theme.fonts.roboto};
     margin-top: 2%;
   }
 `;

@@ -82,10 +82,6 @@ export function Wellcome() {
     }
   }, [user]);
 
-  console.log(email);
-  console.log(uid);
-  console.log(user);
-
   return (
     <Container>
       <Image src={Logo} alt="logo" />
