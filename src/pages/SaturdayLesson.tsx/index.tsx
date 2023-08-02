@@ -71,6 +71,9 @@ export function SaturdayLesson() {
   }
 
   async function handleSubmit() {
+    if (!dat) {
+      return swal("Por favor selecione a data!");
+    }
     //agendar a aula
     await addDoc(collection(firestore, "saturday"), {
       cellphone: "51 99999999",
@@ -141,8 +144,6 @@ export function SaturdayLesson() {
     }
     getMax();
   }, [dat]);
-
-  console.log("range", range);
 
   return (
     <Container>

@@ -15,5 +15,8 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 60vw;
+  width: 30vw;
+  @media (max-width: 600px) {
+    width: 60vw;
+  }
 `;

@@ -5,6 +5,7 @@ import { MyEvaluations } from "../pages/MyEvaluations";
 import { SaturdayLesson } from "../pages/SaturdayLesson.tsx";
 import { Water } from "../pages/Water";
 import { Wellcome } from "../pages/Wellcome";
+import { ExerciseList } from "../pages/ExerciseList";
 
 export function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export function AppRoutes() {
       <Route path="/cancelar-aula" element={<CancelLesson />} />
       <Route path="/minhas-avaliacoes" element={<MyEvaluations />} />
       <Route path="/water" element={<Water />} />
+      <Route path="/lista-exercicios" element={<ExerciseList />} />
     </Routes>
   );
 }

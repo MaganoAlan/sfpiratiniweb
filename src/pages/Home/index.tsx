@@ -13,16 +13,12 @@ import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import ShortcutCard from "../../components/ShortcutCard";
 import { Footer } from "../../components/Footer";
-import {
-  BsCalendarPlus,
-  BsCalendarX,
-  BsInstagram,
-  BsSignpostSplit,
-} from "react-icons/bs";
+import { BsCalendarPlus, BsCalendarX, BsInstagram } from "react-icons/bs";
 import { TbGauge } from "react-icons/tb";
 import { FaFacebook } from "react-icons/fa";
 import { FiChrome } from "react-icons/fi";
 import { MdOutlineWaterDrop } from "react-icons/md";
+import { BiDumbbell } from "react-icons/bi";
 
 export function Home() {
   const auth = getAuth();
@@ -113,6 +109,13 @@ export function Home() {
               title="Minhas avaliações"
               icon={<TbGauge size={26} />}
             />
+
+            <ShortcutCard
+              path="/lista-exercicios"
+              title="Lista de exercícios"
+              icon={<BiDumbbell size={26} />}
+            />
+
             <ShortcutCard
               path="/water"
               title="Cálculo de água"
@@ -133,11 +136,6 @@ export function Home() {
               link="https://linktr.ee/sfitnesspiratini"
               title="Google"
               icon={<FiChrome size={26} />}
-            />
-            <ShortcutCard
-              link="https://linktr.ee/sfitnesspiratini"
-              title="Em breve mais funcionalidades"
-              icon={<BsSignpostSplit size={26} />}
             />
           </ShortCuts>
           <Footer />
