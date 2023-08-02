@@ -14,3 +14,13 @@ export const Icon = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+`;
+
+export const Box = styled.div`
+  margin-left: 4%;
+`;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Body, Card, Container, Label } from "./styles";
+import { Body, Box, Card, Container, Label, TrainLabel } from "./styles";
 import {
   query,
   getDocs,
@@ -23,6 +23,7 @@ export function ExerciseList() {
   const [trains, setTrains] = useState<any>([]);
   const [aerobics, setAerobics] = useState<any>([]);
   const [trainType, setTrainType] = useState<any>("a");
+  const [trainDate, setTrainDate] = useState<any>("");
   const [uid, setUid] = useState<any>("");
   const firestore = getFirestore();
   const auth = getAuth();
@@ -63,7 +64,6 @@ export function ExerciseList() {
         response.push(data);
       });
       setAerobics(response);
-      console.log("");
     }
     e();
   }, [userData]);
@@ -94,6 +94,7 @@ export function ExerciseList() {
       const info = await localStorage.getItem("lastTrain");
       if (info) {
         const { type, data } = JSON.parse(info);
+        setTrainDate(data);
         type === "a" ? setTrainType("b") : setTrainType("a");
         return console.log("Tem storage", type);
       }
@@ -114,11 +115,13 @@ export function ExerciseList() {
     Swal.fire("Treino finalizado cm sucesso!").then(() => navigate("/home"));
   }
 
-  console.log("type atual", trainType);
   return (
     <Container>
       <SecondaryHeader title="Lista de exercícios" />
-      <Label>Último treino: </Label>
+      <TrainLabel>
+        Último treino: {trainType === "a" ? "b" : "a"} - {trainDate}
+      </TrainLabel>
+      <TrainLabel>Lista atual: {trainType}</TrainLabel>
       <Body>
         <Label>Aerobios</Label>
         <Card>
@@ -134,8 +137,9 @@ export function ExerciseList() {
               t.type === trainType && <ExerciseCard key={index} train={t} />
           )}
         </Card>
-
-        <DefaultButton onClick={handleFinish} title="Terminar treino" />
+        <Box>
+          <DefaultButton onClick={handleFinish} title="Terminar treino" />
+        </Box>
       </Body>
     </Container>
   );
