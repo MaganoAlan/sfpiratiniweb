@@ -63,6 +63,7 @@ export function ExerciseList() {
         response.push(data);
       });
       setAerobics(response);
+      console.log("");
     }
     e();
   }, [userData]);
