@@ -30,6 +30,7 @@ export const ShortCuts = styled.div`
   padding: 1%;
   align-self: center;
   margin-top: auto;
+  margin-bottom: 5%;
 `;
 
 export const InfoContainer = styled.div`
