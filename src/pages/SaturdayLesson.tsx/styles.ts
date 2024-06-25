@@ -28,3 +28,8 @@ export const Select = styled.select`
     outline: none;
   }
 `;
+
+export const InfoSpan = styled.div`
+  margin: auto;
+  font-size: 1.3rem;
+`;

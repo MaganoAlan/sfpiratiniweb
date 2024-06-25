@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, ShortCuts } from "./styles";
+import { Container, InfoContainer, InfoText, ShortCuts } from "./styles";
 import { getAuth } from "firebase/auth";
 import {
   getFirestore,
@@ -19,6 +19,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FiChrome } from "react-icons/fi";
 import { MdOutlineWaterDrop } from "react-icons/md";
 import { BiDumbbell } from "react-icons/bi";
+import { CustomCarousel } from "../../components/Carousel";
 
 export function Home() {
   const auth = getAuth();
@@ -28,6 +29,8 @@ export function Home() {
   const [uid, setUid] = useState<any>("");
   const [mat, setMat] = useState<any>("");
   const [monthly, setMonthly] = useState<any>("");
+  const [nextEval, setNextEval] = useState<any>("");
+  const [anounces, setAnounces] = useState([]);
 
   useEffect(() => {
     setUserName(auth.currentUser?.displayName || "");
@@ -54,20 +57,49 @@ export function Home() {
   useEffect(() => {
     if (mat) {
       const docRef = collection(firestore, "vencimento");
-      const q = query(docRef, where("matricula", "==", mat));
-      let response: any = [];
+      const monthlyQuery = query(docRef, where("matricula", "==", mat));
+      let responseMonthly: any = [];
       async function getMonthly() {
+        const res = await getDocs(monthlyQuery);
+        res.forEach((doc) => {
+          const data = doc.data();
+          responseMonthly.push(data);
+        });
+
+        setMonthly(responseMonthly[0]?.dia);
+      }
+      getMonthly();
+
+      const datasAvaliacaoRef = collection(firestore, "datasAvaliacao");
+      const q = query(datasAvaliacaoRef, where("matricula", "==", mat));
+      let response: any = [];
+      async function getNext() {
         const res = await getDocs(q);
         res.forEach((doc) => {
           const data = doc.data();
           response.push(data);
         });
 
-        setMonthly(response[0]?.dia);
+        setNextEval(response[0]?.dia);
       }
-      getMonthly();
+      getNext();
     }
   }, [mat]);
+
+  useEffect(() => {
+    const avisos = collection(firestore, "anuncios");
+    async function getAnounces() {
+      let response: any = [];
+      const res = await getDocs(avisos);
+      res.forEach((doc) => {
+        const data = doc.data();
+        response.push(data);
+      });
+
+      setAnounces(response);
+    }
+    getAnounces();
+  }, []);
 
   return (
     <>
@@ -76,46 +108,18 @@ export function Home() {
       ) : (
         <Container>
           <Header userName={userName} />
-          {monthly !== "" ? (
-            <div
-              style={{
-                textAlign: "center",
-                margin: "auto",
-                marginTop: "2%",
-                padding: 5,
-                color: "green",
-                fontSize: "18px",
-              }}
-            >
-              Sua mensalidade vence todo dia {monthly}
-            </div>
-          ) : (
-            ""
+
+          {anounces.length > 0 && <CustomCarousel anounces={anounces} />}
+
+          {nextEval.length > 0 && (
+            <InfoContainer>
+              <InfoText>
+                Você pode agendar sua próxima avaliação a partir do dia:{" "}
+                {nextEval}, consulte a disponibilidade de horários.
+              </InfoText>
+            </InfoContainer>
           )}
           <ShortCuts>
-            <ShortcutCard
-              path="/aula-de-sabado"
-              title="Agendar aula no sábado"
-              icon={<BsCalendarPlus size={26} />}
-            />
-
-            <ShortcutCard
-              path="/cancelar-aula"
-              title="Cancelar aula no sábado"
-              icon={<BsCalendarX size={26} />}
-            />
-            <ShortcutCard
-              path="/minhas-avaliacoes"
-              title="Minhas avaliações"
-              icon={<TbGauge size={26} />}
-            />
-
-            <ShortcutCard
-              path="/lista-exercicios"
-              title="Lista de exercícios"
-              icon={<BiDumbbell size={26} />}
-            />
-
             <ShortcutCard
               path="/water"
               title="Cálculo de água"

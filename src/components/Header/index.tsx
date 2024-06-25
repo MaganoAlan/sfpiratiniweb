@@ -34,17 +34,11 @@ export default function Header({ userName }: Props) {
     <Container>
       <TopInfo>
         <LogoImg src={Logo} />
-        <h2>Studio Fitness Piratini</h2>
+        <UserInfo>
+          <h2>Studio Fitness Piratini</h2>
+          <UserName>Olá, {userName}</UserName>
+        </UserInfo>
       </TopInfo>
-      <UserInfo>
-        <UserName>Olá, {userName}</UserName>
-        <span>Sair</span>
-        <GiExitDoor
-          onClick={handleSignOut}
-          style={{ cursor: "pointer", marginLeft: "10px" }}
-          size={26}
-        />
-      </UserInfo>
     </Container>
   );
 }

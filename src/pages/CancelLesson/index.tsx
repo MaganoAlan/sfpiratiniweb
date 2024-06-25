@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Div, Text } from "./styles";
+import { Container, Div, InfoText, Text } from "./styles";
 import {
   query,
   getDocs,
@@ -52,7 +52,7 @@ export function CancelLesson() {
   return (
     <Container>
       <SecondaryHeader title="Cancelar aula" />
-      {sat &&
+      {sat.length > 0 ? (
         sat?.map((item: any, index: number) => (
           <Div key={index}>
             <Text>{item.name}</Text>
@@ -62,7 +62,13 @@ export function CancelLesson() {
               onClick={() => handleCancel(item.id)}
             />
           </Div>
-        ))}
+        ))
+      ) : (
+        <InfoText>
+          Você não agendou nenhuma aula, acesse 'agendar' no menu inferior para
+          verificar as datas disponíveis.
+        </InfoText>
+      )}
     </Container>
   );
 }

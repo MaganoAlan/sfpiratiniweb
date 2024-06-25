@@ -85,14 +85,16 @@ export function Wellcome() {
   return (
     <Container>
       <Image src={Logo} alt="logo" />
-      <h1>Bem vindo(a)</h1>
-      <DefaultButton
-        title="Entrar"
-        onClick={() => {
-          handleStudent();
-          navigate("/home");
-        }}
-      />
+      <div>
+        <h3>Partiu Treinar?</h3>
+        <DefaultButton
+          title="BORA!"
+          onClick={() => {
+            handleStudent();
+            navigate("/home");
+          }}
+        />
+      </div>
     </Container>
   );
 }

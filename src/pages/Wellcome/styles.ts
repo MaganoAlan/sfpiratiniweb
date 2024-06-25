@@ -8,15 +8,20 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  h1 {
+  h3 {
+    margin-bottom: 5%;
+  }
+
+  div {
+    width: 45%;
     font-family: ${({ theme }) => theme.fonts.roboto};
     margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
 export const Image = styled.img`
-  width: 30vw;
-  @media (max-width: 600px) {
-    width: 60vw;
-  }
+  width: 13rem;
 `;

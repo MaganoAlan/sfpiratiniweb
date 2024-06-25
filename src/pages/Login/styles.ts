@@ -5,17 +5,19 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2%;
+  height: 100vh;
 `;
 
 export const LoginCard = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 30vw;
+  min-height: max-content;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   box-shadow: -4px 3px 14px 1px ${({ theme }) => theme.colors.gray[200]};
-  padding: 30px;
+  padding: 1.875rem;
   background-color: ${({ theme }) => theme.colors.white};
 
   .btn {
@@ -29,15 +31,41 @@ export const LoginCard = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 20vw;
+  width: 12.25rem;
   border-radius: 100%;
-  margin: auto;
-  margin-bottom: 2%;
+  margin-bottom: 15%;
+  box-shadow: 0px 0px 14px ${({ theme }) => theme.colors.primary[600]};
 
   @media (max-width: 700px) {
-    width: 60vw;
-    margin-top: 10vh;
+    width: 12.25rem;
   }
+`;
+
+export const LoginContainer = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
+
+export const DividerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 1rem auto;
+`;
+
+export const Line = styled.div`
+  border-bottom: 1px solid black;
+  width: 100%;
+`;
+
+export const DividerText = styled.div`
+  padding: 0px 1rem;
+`;
+
+export const GoogleLogo = styled.img`
+  max-width: 1.2rem;
+  margin-right: 0.5rem;
 `;
 
 export const Subtitle = styled.h2`

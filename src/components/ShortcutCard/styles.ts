@@ -10,13 +10,14 @@ export const Card = styled.div`
   justify-content: center;
   padding: 2%;
   border-radius: 10px;
+  height: 7.5rem;
 
   cursor: pointer;
 
-  @media (max-width: 700px) {
+  /* @media (max-width: 700px) {
     width: 100%;
     height: 15vh;
-  }
+  } */
 `;
 
 export const Icon = styled.div``;

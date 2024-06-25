@@ -14,6 +14,7 @@ export function SecondaryHeader({ title }: Props) {
       <TbArrowBackUp
         style={{ cursor: "pointer" }}
         size={26}
+        color="white"
         onClick={() => navigate("/home")}
       />
       <h2>{title}</h2>

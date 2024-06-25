@@ -6,19 +6,16 @@ type BtnProps = {
 
 export const Button = styled.button<BtnProps>`
   background-color: ${({ theme, background }) =>
-    background === "primary" ? theme.colors.primary[600] : "lightgray"};
+    background === "primary" ? theme.colors.primary[600] : "white"};
   color: ${({ theme, background }) =>
     background === "primary" ? "white" : theme.colors.primary[600]};
+  border: 1px solid ${({ theme }) => theme.colors.primary[600]};
   font-family: ${({ theme }) => theme.fonts.roboto};
   font-weight: 600;
-  font-size: 16px;
-  padding: 5px;
-  border: none;
+  font-size: 1rem;
+  padding: 0.6rem 0.3rem;
   border-radius: 5px;
-  width: 15vw;
-  min-width: 10vw;
-  height: 5vh;
-  margin: 0 auto;
+  width: 100%;
   cursor: pointer;
 
   &:hover {
@@ -27,6 +24,6 @@ export const Button = styled.button<BtnProps>`
   }
 
   @media (max-width: 700px) {
-    min-width: 54vw;
+    //min-width: 54vw;
   }
 `;

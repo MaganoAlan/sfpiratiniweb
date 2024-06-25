@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const Select = styled.select`
-  height: 6vh;
-  width: 62vw;
-  border: none;
-  background-color: ${({ theme }) => theme.colors.gray[100]};
-  margin: 10px 0;
+  width: 100%;
+  border: 1px solid black;
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+  //background-color: ${({ theme }) => theme.colors.gray[100]};
+  background-color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.varela};
 `;

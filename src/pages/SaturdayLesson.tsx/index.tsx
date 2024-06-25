@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { Container, Select } from "./styles";
+import { Container, InfoSpan, Select } from "./styles";
 import {
   getFirestore,
   collection,
@@ -148,58 +148,64 @@ export function SaturdayLesson() {
   return (
     <Container>
       <SecondaryHeader title="Agendar aula" />
-      <span>Selecione a data:</span>
-
-      <Select onChange={(e: any) => setDat(e.target.value)}>
-        <option value="" defaultValue="Selecione">
-          Selecione
-        </option>
-        {saturdayDates &&
-          saturdayDates.map((date: any, index) => (
-            <option key={index} value={date.date}>
-              {date.date}
-            </option>
-          ))}
-      </Select>
-
-      <span>Selecione o horário:</span>
-
-      <Select onChange={(e: any) => setRange(e.target.value)}>
-        <option value="" defaultValue="Selecione">
-          Selecione
-        </option>
-        {saturdayDates &&
-          saturdayDates.map((date: any, index) => (
-            <>
-              <option key={0} value={"range1"}>
-                {date.range_1 && "9:30h às 10:30h"}
-                {date.free_range1 && " (LIVRE)"}
-              </option>
-              <option key={1} value={"range2"}>
-                {date.range_2 && "11:00h às 12:00h"}
-                {date.free_range2 && " (LIVRE)"}
-              </option>
-              <option key={2} value={"range3"}>
-                {date.range_3 && "13:30h às 14:30h"}
-                {date.free_range3 && " (LIVRE)"}
-              </option>
-              <option key={3} value={"range4"}>
-                {date.range_4 && "15:00 às 16:00h"}
-                {date.free_range4 && " (LIVRE)"}
-              </option>
-            </>
-          ))}
-      </Select>
-      <DefaultButton title="Ver disponibilidade" onClick={handleVerify} />
-      <Divider />
-      {available ? (
+      {saturdayDates.length > 1 ? (
         <>
-          <DefaultInput value={userName} onChange={() => {}} />
-          <DefaultInput value={dat} onChange={() => {}} />
-          <DefaultButton title="Agendar" onClick={handleSubmit} />
+          <span>Selecione a data:</span>
+
+          <Select onChange={(e: any) => setDat(e.target.value)}>
+            <option value="" defaultValue="Selecione">
+              Selecione
+            </option>
+            {saturdayDates &&
+              saturdayDates.map((date: any, index) => (
+                <option key={index} value={date.date}>
+                  {date.date}
+                </option>
+              ))}
+          </Select>
+
+          <span>Selecione o horário:</span>
+
+          <Select onChange={(e: any) => setRange(e.target.value)}>
+            <option value="" defaultValue="Selecione">
+              Selecione
+            </option>
+            {saturdayDates &&
+              saturdayDates.map((date: any, index) => (
+                <>
+                  <option key={0} value={"range1"}>
+                    {date.range_1 && "9:30h às 10:30h"}
+                    {date.free_range1 && " (LIVRE)"}
+                  </option>
+                  <option key={1} value={"range2"}>
+                    {date.range_2 && "11:00h às 12:00h"}
+                    {date.free_range2 && " (LIVRE)"}
+                  </option>
+                  <option key={2} value={"range3"}>
+                    {date.range_3 && "13:30h às 14:30h"}
+                    {date.free_range3 && " (LIVRE)"}
+                  </option>
+                  <option key={3} value={"range4"}>
+                    {date.range_4 && "15:00 às 16:00h"}
+                    {date.free_range4 && " (LIVRE)"}
+                  </option>
+                </>
+              ))}
+          </Select>
+          <DefaultButton title="Ver disponibilidade" onClick={handleVerify} />
+          <Divider />
+          {available ? (
+            <>
+              <DefaultInput value={userName} onChange={() => {}} />
+              <DefaultInput value={dat} onChange={() => {}} />
+              <DefaultButton title="Agendar" onClick={handleSubmit} />
+            </>
+          ) : (
+            ""
+          )}
         </>
       ) : (
-        ""
+        <InfoSpan>Não existem datas disponíveis.</InfoSpan>
       )}
     </Container>
   );

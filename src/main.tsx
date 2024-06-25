@@ -6,6 +6,7 @@ import { GlobalStyle } from "./style/global";
 import Default from "./style/theme/Default";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBEHYzEsiHi1_SadiiLLDh6hwj13sPS6D4",

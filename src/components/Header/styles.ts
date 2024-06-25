@@ -9,6 +9,11 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.varela};
   box-shadow: 4px 4px 11px gray;
+  margin-bottom: 2%;
+
+  h2 {
+    margin: 0;
+  }
 `;
 
 export const TopInfo = styled.div`
@@ -22,22 +27,17 @@ export const TopInfo = styled.div`
 `;
 export const UserInfo = styled.div`
   display: flex;
-  align-items: center;
-  margin-top: 2%;
-  margin-right: 5%;
-  margin-left: auto;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
 `;
 
-export const UserName = styled.span`
-  margin-right: auto;
-  margin-left: 2%;
-`;
+export const UserName = styled.div``;
 
 export const LogoImg = styled.img`
   width: 5vw;
   border-radius: 100%;
-  margin-right: 2%;
+  margin-right: 5%;
 
   @media (max-width: 700px) {
     width: 15vw;

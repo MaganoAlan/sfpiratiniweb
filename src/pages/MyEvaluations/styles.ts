@@ -7,7 +7,6 @@ export const Container = styled.div`
 
   span {
     font-size: 18px;
-    margin: 10px 0;
   }
 
   .next {
@@ -15,16 +14,19 @@ export const Container = styled.div`
     padding: 0px 5px;
     color: ${({ theme }) => theme.colors.green[500]};
   }
-
-  .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 `;
 
 export const Image = styled.img`
   @media (max-width: 700px) {
     width: 100%;
+  }
+`;
+
+export const SelectContainer = styled.div`
+  width: 90%;
+  margin: 4% auto;
+
+  span {
+    margin-left: 2%;
   }
 `;
