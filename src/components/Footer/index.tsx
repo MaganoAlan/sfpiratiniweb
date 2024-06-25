@@ -31,33 +31,25 @@ export function Footer() {
   }
   return (
     <Container>
-      <Link href="/minhas-avaliacoes">
-        <IconContainer>
-          <TbGauge size={26} />
-          <IconText>Avaliações</IconText>
-        </IconContainer>
-      </Link>
+      <IconContainer onClick={() => navigate("/minhas-avaliacoes")}>
+        <TbGauge size={26} />
+        <IconText>Avaliações</IconText>
+      </IconContainer>
 
-      <Link href="/aula-de-sabado">
-        <IconContainer>
-          <BsCalendarPlus size={26} />
-          <IconText>Agendar</IconText>
-        </IconContainer>
-      </Link>
+      <IconContainer onClick={() => navigate("/aula-de-sabado")}>
+        <BsCalendarPlus size={26} />
+        <IconText>Agendar</IconText>
+      </IconContainer>
 
-      <Link href="/cancelar-aula">
-        <IconContainer>
-          <BsCalendarX size={26} />
-          <IconText>Cancelar</IconText>
-        </IconContainer>
-      </Link>
+      <IconContainer onClick={() => navigate("/cancelar-aula")}>
+        <BsCalendarX size={26} />
+        <IconText>Cancelar</IconText>
+      </IconContainer>
 
-      <Link href="/lista-exercicios">
-        <IconContainer>
-          <BiDumbbell size={26} />
-          <IconText>Exercícios</IconText>
-        </IconContainer>
-      </Link>
+      <IconContainer onClick={() => navigate("/lista-exercicios")}>
+        <BiDumbbell size={26} />
+        <IconText>Exercícios</IconText>
+      </IconContainer>
 
       <Link>
         <IconContainer>
