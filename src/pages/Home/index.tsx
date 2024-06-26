@@ -107,7 +107,7 @@ export function Home() {
         <Loader />
       ) : (
         <Container>
-          <Header userName={userName} />
+          <Header userName={userName} monthly={monthly} />
 
           {anounces.length > 0 && <CustomCarousel anounces={anounces} />}
 

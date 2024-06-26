@@ -7,6 +7,14 @@ export const Container = styled.div`
   margin-bottom: 2%;
   background-color: #fff;
   box-shadow: 1px 1px 4px gray;
+
+  .done {
+    padding: 10px;
+    transition: 2s;
+    border-radius: 10px;
+    background-color: #52c211 !important;
+    color: white;
+  }
 `;
 export const Label = styled.div``;
 export const Icon = styled.div`

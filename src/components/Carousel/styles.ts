@@ -16,7 +16,7 @@ export const Image = styled.img`
 `;
 
 export const Teste = styled.div`
-  height: 200px;
+  height: 10rem;
   background-color: ${({ theme }) => theme.colors.primary[600]};
   width: 100%;
 `;

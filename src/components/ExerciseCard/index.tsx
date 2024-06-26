@@ -18,6 +18,7 @@ interface IProps {
 
 export function ExerciseCard({ train }: IProps) {
   const [checked, setChecked] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   const t = gifs.find((g: any) => g.codigo === train.codigo);
   console.log(t);
@@ -30,22 +31,35 @@ export function ExerciseCard({ train }: IProps) {
       confirmButtonAriaLabel: "Entendi!",
     });
   }
+
+  function handleHide() {
+    setTimeout(() => {
+      setHidden(true);
+    }, 2000);
+  }
   return (
-    <Container>
-      {/* <img src={t?.gif} width="200" height="200" /> */}
-      <Label>Exercício: {train?.exercicio}</Label>
-      <Label>Repetições: {train?.repeticoes}</Label>
-      <Label>Séries: {train?.series}</Label>
-      <Label>Carga: {train?.carga ? train?.carga : "Corporal"} Kg</Label>
-      <Row>
-        <Label>Como é o exercício: </Label>
-        <Box onClick={showGif}>
-          <FaRegQuestionCircle color="#4193FF" size={22} />
-        </Box>
-      </Row>
-      <Icon onClick={() => setChecked(!checked)}>
-        <BsCheck2All color={checked ? "#52c211" : "#333"} size={26} />
-      </Icon>
+    <Container style={{ display: hidden ? "none" : "block" }}>
+      <div className={checked ? "done" : ""}>
+        {/* <img src={t?.gif} width="200" height="200" /> */}
+        <Label>Exercício: {train?.exercicio}</Label>
+        <Label>Repetições: {train?.repeticoes}</Label>
+        <Label>Séries: {train?.series}</Label>
+        <Label>Carga: {train?.carga ? train?.carga : "Corporal"} Kg</Label>
+        <Row>
+          <Label>Como é o exercício: </Label>
+          <Box onClick={showGif}>
+            <FaRegQuestionCircle color="#4193FF" size={22} />
+          </Box>
+        </Row>
+        <Icon
+          onClick={() => {
+            setChecked(!checked);
+            handleHide();
+          }}
+        >
+          <BsCheck2All color={checked ? "#52c211" : "#333"} size={26} />
+        </Icon>
+      </div>
     </Container>
   );
 }

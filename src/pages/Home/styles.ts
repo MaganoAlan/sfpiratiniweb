@@ -9,7 +9,7 @@ export const DefaultBody = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 100%;
+  //width: 100%;
   height: 100vh;
   margin: auto;
   display: flex;
@@ -25,17 +25,19 @@ export const ShortCuts = styled.div`
   width: 90%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 2%;
-  row-gap: 2%;
+  column-gap: 4%;
+  row-gap: 4%;
   padding: 1%;
   align-self: center;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: auto;
-  margin-bottom: 5%;
+  margin-bottom: auto;
 `;
 
 export const InfoContainer = styled.div`
   width: 80%;
-  margin: 0 auto;
+  margin: auto;
   background-color: ${({ theme }) => theme.colors.primary[600]};
   padding: 1rem;
   border-radius: 1rem;

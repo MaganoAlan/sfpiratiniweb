@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   userName: string;
+  monthly: string;
 };
 
-export default function Header({ userName }: Props) {
+export default function Header({ userName, monthly }: Props) {
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -37,6 +38,7 @@ export default function Header({ userName }: Props) {
         <UserInfo>
           <h2>Studio Fitness Piratini</h2>
           <UserName>Olá, {userName}</UserName>
+          <UserName>Sua mensalidade vence todo dia {monthly}</UserName>
         </UserInfo>
       </TopInfo>
     </Container>
