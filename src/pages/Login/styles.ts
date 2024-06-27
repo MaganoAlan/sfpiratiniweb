@@ -73,3 +73,7 @@ export const Subtitle = styled.h2`
   color: ${({ theme }) => theme.colors.gray[300]};
   margin: 2%;
 `;
+
+export const SpinnerContainer = styled.div`
+  margin-top: 15%;
+`;

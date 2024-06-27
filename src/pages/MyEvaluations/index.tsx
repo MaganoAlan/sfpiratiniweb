@@ -20,6 +20,8 @@ import {
 import DefaultButton from "../../components/DefaultButton";
 import { DefaultSelect } from "../../components/DefaultSelect";
 import Swal from "sweetalert2";
+import { SpinnerContainer } from "../Login/styles";
+import { Spinner } from "react-bootstrap";
 
 export function MyEvaluations() {
   const auth = getAuth();
@@ -60,6 +62,18 @@ export function MyEvaluations() {
         response.push(itemRef.fullPath);
       });
     });
+    function ordenar(a: any, b: any) {
+      if (
+        parseFloat(a.split("/")[2].split(".")[2]) <
+        parseFloat(b.split("/")[2].split(".")[2])
+      ) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      }
+      return 0;
+    }
+    response = response.sort(ordenar);
     setEvalDates(response);
 
     /*  res.forEach((doc) => {
@@ -111,13 +125,15 @@ export function MyEvaluations() {
             {evalDates &&
               evalDates.map((data: any, index: number) => (
                 <option key={index} value={data}>
-                  {data}
+                  {data.split("/")[2].replaceAll(".", "/")}
                 </option>
               ))}
           </DefaultSelect>
         </SelectContainer>
       ) : (
-        ""
+        <SpinnerContainer>
+          <Spinner variant="primary" />
+        </SpinnerContainer>
       )}
       {url ? <Image src={url} alt="avaliação física" /> : ""}
     </Container>

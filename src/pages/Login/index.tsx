@@ -14,6 +14,7 @@ import {
   Line,
   LoginCard,
   LoginContainer,
+  SpinnerContainer,
   Subtitle,
 } from "./styles";
 import LogoG from "../../assets/logo_g.jpg";
@@ -24,10 +25,12 @@ import { useNavigate } from "react-router-dom";
 import googleImg from "../../assets/google.png";
 import { Divider } from "../../components/Divider";
 import Swal from "sweetalert2";
+import { Spinner } from "react-bootstrap";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -35,21 +38,28 @@ export function Login() {
     if (!email || !password) {
       return Swal.fire("Por favor preencha o usuário e a senha.");
     }
+    setIsLoading(true);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("user", user);
+        setIsLoading(false);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        if (errorCode === "auth/user-not-found") {
+        if (
+          errorCode === "auth/user-not-found" ||
+          errorCode === "auth/invalid-email"
+        ) {
           Swal.fire(`Usuário não encontrado ou incorreto.`);
         }
         if (errorCode === "auth/wrong-password") {
           Swal.fire(`Senha incorreta.`);
         }
+        console.log("ERRO", errorCode);
+        setIsLoading(false);
       });
   }
 
@@ -106,25 +116,33 @@ export function Login() {
             setPassword(e.target.value)
           }
         />
-        <DividerContainer>
-          <DefaultButton title="ENTRAR" onClick={handleSigIn} />
-        </DividerContainer>
-        <DefaultButton
-          title="CADASTRAR"
-          background="secondary"
-          onClick={() => navigate("/cadastrar")}
-        />
+        {isLoading ? (
+          <SpinnerContainer>
+            <Spinner variant="primary" />
+          </SpinnerContainer>
+        ) : (
+          <>
+            <DividerContainer>
+              <DefaultButton title="ENTRAR" onClick={handleSigIn} />
+            </DividerContainer>
+            <DefaultButton
+              title="CADASTRAR"
+              background="secondary"
+              onClick={() => navigate("/cadastrar")}
+            />
 
-        <DividerContainer>
-          <Line />
-          <DividerText>Ou</DividerText>
-          <Line />
-        </DividerContainer>
+            <DividerContainer>
+              <Line />
+              <DividerText>Ou</DividerText>
+              <Line />
+            </DividerContainer>
 
-        <LoginContainer onClick={handleGoogleSignIn}>
-          <GoogleLogo src={googleImg} />
-          <div>Entrar com google</div>
-        </LoginContainer>
+            <LoginContainer onClick={handleGoogleSignIn}>
+              <GoogleLogo src={googleImg} />
+              <div>Entrar com google</div>
+            </LoginContainer>
+          </>
+        )}
       </LoginCard>
     </Container>
   );
