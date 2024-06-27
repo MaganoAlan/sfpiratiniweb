@@ -33,3 +33,16 @@ export const InfoSpan = styled.div`
   margin: auto;
   font-size: 1.3rem;
 `;
+
+export const ButtonContainer = styled.div`
+  margin: 0 auto;
+  width: 60%;
+`;
+
+export const UserContainer = styled.div`
+  margin: 0 auto;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { Container, InfoSpan, Select } from "./styles";
+import {
+  ButtonContainer,
+  Container,
+  InfoSpan,
+  Select,
+  UserContainer,
+} from "./styles";
 import {
   getFirestore,
   collection,
@@ -238,14 +244,16 @@ export function SaturdayLesson() {
                 </>
               ))}
           </Select>
-          <DefaultButton title="Ver disponibilidade" onClick={handleVerify} />
+          <ButtonContainer>
+            <DefaultButton title="Ver disponibilidade" onClick={handleVerify} />
+          </ButtonContainer>
           <Divider />
           {available ? (
-            <>
+            <UserContainer>
               <DefaultInput value={userName} onChange={() => {}} />
               <DefaultInput value={dat} onChange={() => {}} />
               <DefaultButton title="Agendar" onClick={handleSubmit} />
-            </>
+            </UserContainer>
           ) : (
             ""
           )}
