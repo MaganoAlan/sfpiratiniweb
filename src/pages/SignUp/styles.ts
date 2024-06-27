@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2%;
+  height: 100vh;
 `;
 
 export const LoginCard = styled.div`
@@ -18,30 +18,25 @@ export const LoginCard = styled.div`
   padding: 30px;
   background-color: ${({ theme }) => theme.colors.white};
 
-  .btn {
-    margin: 0 auto;
-    margin-top: 2%;
-  }
-
   @media (max-width: 700px) {
     max-width: 90vw;
   }
 `;
 
 export const Img = styled.img`
-  width: 20vw;
+  width: 12.25rem;
   border-radius: 100%;
-  margin: auto;
-  margin-bottom: 2%;
-
-  @media (max-width: 700px) {
-    width: 60vw;
-    margin-top: 10vh;
-  }
+  margin-bottom: 15%;
+  box-shadow: 0px 0px 14px ${({ theme }) => theme.colors.primary[600]};
 `;
 
-export const Subtitle = styled.h2`
+export const Subtitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.alata};
   color: ${({ theme }) => theme.colors.gray[300]};
   margin: 2%;
+`;
+
+export const CancelContainer = styled.div`
+  width: 100%;
+  margin-top: 4%;
 `;

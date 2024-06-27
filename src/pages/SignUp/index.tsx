@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { Container, Img, LoginCard, Subtitle } from "./styles";
+import { CancelContainer, Container, Img, Subtitle } from "./styles";
 import LogoG from "../../assets/logo_g.jpg";
 import DefaultButton from "../../components/DefaultButton";
 import DefaultInput from "../../components/DefaultInput";
 import { Envelope, Key } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { LoginCard } from "../Login/styles";
 
 export function SignUp() {
   const [email, setEmail] = useState("");
@@ -42,9 +43,9 @@ export function SignUp() {
 
   return (
     <Container>
-      <Img src={LogoG} alt="Imagem de logo" />
-      <Subtitle>Criar conta de usuário</Subtitle>
       <LoginCard>
+        <Img src={LogoG} alt="Imagem de logo" />
+        <Subtitle>Criar conta de usuário</Subtitle>
         <DefaultInput
           type="email"
           icon={<Envelope size={32} color="#7C7C8A" />}
@@ -73,13 +74,13 @@ export function SignUp() {
           }
         />
         <DefaultButton title="Cadastrar" onClick={handleCreate} />
-        <div className="btn">
+        <CancelContainer>
           <DefaultButton
             background="secondary"
             title="Cancelar"
             onClick={() => navigate("/")}
           />
-        </div>
+        </CancelContainer>
       </LoginCard>
     </Container>
   );

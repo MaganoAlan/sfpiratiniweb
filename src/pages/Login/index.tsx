@@ -23,6 +23,7 @@ import { Envelope, Key } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import googleImg from "../../assets/google.png";
 import { Divider } from "../../components/Divider";
+import Swal from "sweetalert2";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -31,6 +32,9 @@ export function Login() {
   const navigate = useNavigate();
 
   function handleSigIn() {
+    if (!email || !password) {
+      return Swal.fire("Por favor preencha o usuário e a senha.");
+    }
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -40,6 +44,12 @@ export function Login() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        if (errorCode === "auth/user-not-found") {
+          Swal.fire(`Usuário não encontrado ou incorreto.`);
+        }
+        if (errorCode === "auth/wrong-password") {
+          Swal.fire(`Senha incorreta.`);
+        }
       });
   }
 
