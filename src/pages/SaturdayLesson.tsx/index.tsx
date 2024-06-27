@@ -28,6 +28,7 @@ export function SaturdayLesson() {
 
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
+  const [mat, setMat] = useState("");
 
   const [dat, setDat] = useState("");
   const [students, setStudents] = useState([]);
@@ -57,6 +58,25 @@ export function SaturdayLesson() {
     if (range === "") {
       return swal("Selecione um horário.");
     }
+    let hasInRange1 = [];
+    let hasInRange2 = [];
+    let hasInRange3 = [];
+    let hasInRange4 = [];
+    hasInRange1 = inRange1.find((item: any) => item.matricula === mat)!;
+    hasInRange2 = inRange2.find((item: any) => item.matricula === mat)!;
+    hasInRange3 = inRange3.find((item: any) => item.matricula === mat)!;
+    hasInRange4 = inRange4.find((item: any) => item.matricula === mat)!;
+    console.log(
+      "Ranges 1 2 3 4",
+      hasInRange1,
+      hasInRange2,
+      hasInRange3,
+      hasInRange4
+    );
+    if (hasInRange1 || hasInRange2 || hasInRange3 || hasInRange4) {
+      setAvailable(false);
+      return swal("Você já agendou aula para este dia.");
+    }
     if (
       (range === "range1" && inRange1.length >= Number(maxRange1)) ||
       (range === "range2" && inRange2.length >= Number(maxRange2)) ||
@@ -76,9 +96,10 @@ export function SaturdayLesson() {
     }
     //agendar a aula
     await addDoc(collection(firestore, "saturday"), {
-      cellphone: "51 99999999",
+      horario: range,
       date: dat,
       name: userName,
+      matricula: mat,
       ownerId: userId,
     })
       .then(() => {
@@ -95,6 +116,7 @@ export function SaturdayLesson() {
   useEffect(() => {
     setUserName(auth.currentUser?.displayName || "");
     setUserId(auth.currentUser?.uid || "");
+    console.log(auth.currentUser);
   }, []);
 
   useEffect(() => {
@@ -144,6 +166,22 @@ export function SaturdayLesson() {
     }
     getMax();
   }, [dat]);
+
+  useEffect(() => {
+    const saturdayRef = collection(firestore, "alunos");
+    const q = query(saturdayRef, where("id", "==", userId));
+    let response: any = [];
+    async function getMat() {
+      const res = await getDocs(q);
+      res.forEach((doc) => {
+        const data = doc.data();
+        response.push(data);
+      });
+
+      setMat(response[0]?.matricula);
+    }
+    getMat();
+  }, [userId]);
 
   return (
     <Container>
