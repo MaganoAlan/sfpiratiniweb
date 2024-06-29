@@ -15,7 +15,9 @@ export default function ShortcutCard({ icon, title, path = "", link }: Props) {
     <Card onClick={() => navigate(path)}>
       <Icon>{icon}</Icon>
       <Title>
-        <Link href={link}>{title}</Link>
+        <Link href={link} target="_blank">
+          {title}
+        </Link>
       </Title>
     </Card>
   );

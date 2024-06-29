@@ -10,7 +10,7 @@ export const Card = styled.div`
   justify-content: center;
   padding: 2%;
   border-radius: 10px;
-  height: 7.5rem;
+  height: 4.5rem;
 
   cursor: pointer;
 
