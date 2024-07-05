@@ -78,6 +78,10 @@ export const SpinnerContainer = styled.div`
   margin-top: 15%;
 `;
 
+export const ForgotContainer = styled.div`
+  margin-top: 5%;
+`;
+
 export const Forgot = styled.div`
   text-decoration: underline;
   color: blue;

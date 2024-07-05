@@ -10,6 +10,7 @@ import {
   DividerContainer,
   DividerText,
   Forgot,
+  ForgotContainer,
   GoogleLogo,
   Img,
   Line,
@@ -71,7 +72,7 @@ export function Login() {
 
     const auth = getAuth();
     //auth.languageCode = "it";
-    auth.useDeviceLanguage();
+    //auth.useDeviceLanguage();
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -132,7 +133,7 @@ export function Login() {
               onClick={() => navigate("/cadastrar")}
             />
 
-            {/* <DividerContainer>
+            <DividerContainer>
               <Line />
               <DividerText>Ou</DividerText>
               <Line />
@@ -141,17 +142,17 @@ export function Login() {
             <LoginContainer onClick={handleGoogleSignIn}>
               <GoogleLogo src={googleImg} />
               <div>Entrar com google</div>
-            </LoginContainer> */}
+            </LoginContainer>
 
-            <DividerContainer>
+            {/* <DividerContainer>
               <Line />
               <DividerText> </DividerText>
               <Line />
-            </DividerContainer>
+            </DividerContainer> */}
 
-            <LoginContainer onClick={() => navigate("/recuperar-senha")}>
+            <ForgotContainer onClick={() => navigate("/recuperar-senha")}>
               <Forgot>Esqueci minha senha</Forgot>
-            </LoginContainer>
+            </ForgotContainer>
           </>
         )}
       </LoginCard>
