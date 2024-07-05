@@ -77,3 +77,8 @@ export const Subtitle = styled.h2`
 export const SpinnerContainer = styled.div`
   margin-top: 15%;
 `;
+
+export const Forgot = styled.div`
+  text-decoration: underline;
+  color: blue;
+`;

@@ -9,6 +9,7 @@ import {
   Container,
   DividerContainer,
   DividerText,
+  Forgot,
   GoogleLogo,
   Img,
   Line,
@@ -131,7 +132,7 @@ export function Login() {
               onClick={() => navigate("/cadastrar")}
             />
 
-            <DividerContainer>
+            {/* <DividerContainer>
               <Line />
               <DividerText>Ou</DividerText>
               <Line />
@@ -140,6 +141,16 @@ export function Login() {
             <LoginContainer onClick={handleGoogleSignIn}>
               <GoogleLogo src={googleImg} />
               <div>Entrar com google</div>
+            </LoginContainer> */}
+
+            <DividerContainer>
+              <Line />
+              <DividerText> </DividerText>
+              <Line />
+            </DividerContainer>
+
+            <LoginContainer onClick={() => navigate("/recuperar-senha")}>
+              <Forgot>Esqueci minha senha</Forgot>
             </LoginContainer>
           </>
         )}
