@@ -153,7 +153,7 @@ export function Wellcome() {
                 showLoaderOnConfirm: true,
                 preConfirm: (user) => {
                   auth.signOut().then(() => {
-                    swal("Você foi desconectado");
+                    //swal("Você foi desconectado");
                     navigate("/");
                   });
                 },
