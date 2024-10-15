@@ -31,7 +31,7 @@ export const Img = styled.img`
 `;
 
 export const Subtitle = styled.h3`
-  font-family: ${({ theme }) => theme.fonts.alata};
+  font-family: ${({ theme }) => theme.fonts.roboto};
   color: ${({ theme }) => theme.colors.gray[300]};
   margin: 2%;
 `;

@@ -149,10 +149,13 @@ export function Wellcome() {
                   autocapitalize: "off",
                 },
                 showCancelButton: false,
-                confirmButtonText: "Entendi",
+                confirmButtonText: "SAIR",
                 showLoaderOnConfirm: true,
                 preConfirm: (user) => {
-                  //setNewUser(user);
+                  auth.signOut().then(() => {
+                    swal("Você foi desconectado");
+                    navigate("/");
+                  });
                 },
                 allowOutsideClick: () => !Swal.isLoading(),
               });
