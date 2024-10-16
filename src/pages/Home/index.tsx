@@ -109,9 +109,9 @@ export function Home() {
         <Container>
           <Header userName={userName} monthly={monthly} />
 
-          {anounces.length > 0 && <CustomCarousel anounces={anounces} />}
+          {anounces?.length > 0 && <CustomCarousel anounces={anounces} />}
 
-          {nextEval.length > 0 && (
+          {nextEval?.length > 0 && (
             <InfoContainer>
               <InfoText>
                 Você pode agendar sua próxima avaliação a partir do dia:{" "}

@@ -10,6 +10,7 @@ export const Container = styled.div`
 
   h3 {
     margin-bottom: 5%;
+    text-align: center;
   }
 
   div {
@@ -19,9 +20,29 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 500px) {
+      width: 95%;
+    }
   }
 `;
 
 export const Image = styled.img`
   width: 13rem;
+`;
+
+export const Title = styled.h3`
+  text-align: center;
+`;
+
+export const Input = styled.input`
+  width: 90%;
+  margin-bottom: 5%;
+  border-radius: 5px;
+  padding: 2%;
+  border: 1px solid black;
+`;
+
+export const Label = styled.div`
+  text-align: left;
 `;
