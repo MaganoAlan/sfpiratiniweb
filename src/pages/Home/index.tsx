@@ -138,7 +138,7 @@ export function Home() {
             />
             <ShortcutCard
               link="https://linktr.ee/sfitnesspiratini"
-              title="Google"
+              title="Mais informações e agenda"
               icon={<FiChrome size={26} />}
             />
           </ShortCuts>

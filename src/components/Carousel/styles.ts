@@ -10,13 +10,18 @@ export const Container = styled.div`
 
 export const Image = styled.img`
   width: 80%;
-  max-height: 25vh;
+  min-height: 25vh;
   vertical-align: middle;
   align-self: center;
 `;
 
 export const Teste = styled.div`
-  height: 10rem;
+  min-height: 10rem;
   background-color: ${({ theme }) => theme.colors.primary[600]};
   width: 100%;
+`;
+
+export const Sub = styled.div`
+  color: white;
+  font-weight: bold;
 `;

@@ -1,4 +1,4 @@
-import { Container, Image, Teste } from "./styles";
+import { Container, Image, Sub, Teste } from "./styles";
 import Carousel from "react-bootstrap/Carousel";
 import image from "../../assets/google.png";
 import aviso from "../../assets/aviso.jpeg";
@@ -10,13 +10,13 @@ interface IProps {
 export function CustomCarousel({ anounces }: IProps) {
   console.log("anooo", anounces);
   return (
-    <Carousel style={{ marginBottom: "10%", marginTop: "1%" }}>
+    <Carousel style={{ marginBottom: "1%", marginTop: "1%" }}>
       {anounces.map((item: any, index: number) => (
         <Carousel.Item key={index}>
           <Container>
             <Teste />
             <Carousel.Caption>
-              <h3>{item.title}</h3>
+              <Sub>{item.title}</Sub>
               <p>{item.body}</p>
             </Carousel.Caption>
           </Container>
