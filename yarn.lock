@@ -513,6 +513,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@firebase/app-types@npm:0.9.3":
+  version: 0.9.3
+  resolution: "@firebase/app-types@npm:0.9.3"
+  checksum: 10c0/02ec9a26c10b9bbb2a1e5b9ae0552b5325b40066e3c23be089ceae53414a1505f2ab716ae1098652a0a0c9992ba322c05371a9b2a837cccfae309788372a72e0
+  languageName: node
+  linkType: hard
+
 "@firebase/app@npm:0.10.13":
   version: 0.10.13
   resolution: "@firebase/app@npm:0.10.13"
@@ -624,6 +631,16 @@ __metadata:
     "@firebase/app-types": "npm:0.9.2"
     "@firebase/util": "npm:1.10.0"
   checksum: 10c0/64067fd5f11117898ec499bd63b04e13e0a3ef08c82d10873c112ef86be503152d0848f996d6f3f178392a141f20206d7cadb8e3163fd7ffaf7221c132d0f7a2
+  languageName: node
+  linkType: hard
+
+"@firebase/database-types@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "@firebase/database-types@npm:1.0.7"
+  dependencies:
+    "@firebase/app-types": "npm:0.9.3"
+    "@firebase/util": "npm:1.10.2"
+  checksum: 10c0/12c1f6b489d662f1191b65c1cd08cea1c60591f24867241d8861cf5c21e0b6402f7af2e832e35bc43cdc94dd00658da0d124009d4b3ab036f188299fbb8561d8
   languageName: node
   linkType: hard
 
@@ -929,6 +946,15 @@ __metadata:
   dependencies:
     tslib: "npm:^2.1.0"
   checksum: 10c0/fc152a2cbdd06323f57f66c90cd388369e48e8910d589127f2ea76ca415c43c1c59b5b7b240307ae18f7f4c9cf0f97c71cb06e5ed8cba770b70958903ec52571
+  languageName: node
+  linkType: hard
+
+"@firebase/util@npm:1.10.2":
+  version: 1.10.2
+  resolution: "@firebase/util@npm:1.10.2"
+  dependencies:
+    tslib: "npm:^2.1.0"
+  checksum: 10c0/d6abb471948517cc9c560ebbb44e9e135716829c3abcd248a1af8aa111e48311ab410b693adc8f3bfe3b564896da7000dd7e26e34ecf59326f3b204a6a8b123c
   languageName: node
   linkType: hard
 
@@ -1428,12 +1454,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/firebase@npm:^3.2.1":
-  version: 3.2.1
-  resolution: "@types/firebase@npm:3.2.1"
+"@types/firebase@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "@types/firebase@npm:3.2.3"
   dependencies:
     firebase: "npm:*"
-  checksum: 10c0/a25537dd8596f1cb47370fe3a607b4a196dd868ca833f980da93853b3be28efc75f31bcd0915a2f7f5878946f61672c178e95acfc6e0c9039e234da807c9ddb5
+  checksum: 10c0/42d23ba272fc69dbc7ce9d1052f84eb3ce8b6473b6eedc1d84b9d23d1d611d800c25b0b7849424cfcee7674217a9fce73f3e9d3a965ae40e16b80c635e61dc67
   languageName: node
   linkType: hard
 
@@ -7770,7 +7796,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sfpiratiniweb@workspace:."
   dependencies:
-    "@types/firebase": "npm:^3.2.1"
+    "@firebase/database-types": "npm:^1.0.7"
+    "@types/firebase": "npm:^3.2.3"
     "@types/history": "npm:4.7.0"
     "@types/react": "npm:^18.3.11"
     "@types/react-dom": "npm:^18.3.1"
