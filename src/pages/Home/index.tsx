@@ -122,7 +122,7 @@ export function Home() {
           <ShortCuts>
             <ShortcutCard
               path="/water"
-              title="Cálculo de água"
+              title="Cálculo de água "
               icon={<MdOutlineWaterDrop size={26} />}
             />
 
