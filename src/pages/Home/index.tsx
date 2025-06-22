@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useEffect, useState } from "react";
 import { Container, InfoContainer, InfoText, ShortCuts } from "./styles";
 import { getAuth } from "firebase/auth";

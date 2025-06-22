@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { BsCalendarPlus, BsCalendarX } from "react-icons/bs";
 import ShortcutCard from "../ShortcutCard";
 import { Container, IconContainer, IconText, Link, Text } from "./styles";

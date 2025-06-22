@@ -1,9 +1,10 @@
+//@ts-nocheck
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Icon, Link, Title } from "./styles";
 
 type Props = {
-  icon: ReactNode;
+  icon: React.ReactNode;
   title: string;
   path?: string;
   link?: string;

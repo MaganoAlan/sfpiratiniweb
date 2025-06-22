@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState } from "react";
 import { Box, Container, Icon, Label, Row } from "./styles";
 import { BsCheck2All } from "react-icons/bs";

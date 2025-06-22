@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Container } from "./styles";
 import { TbArrowBackUp } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";

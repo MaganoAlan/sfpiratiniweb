@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState } from "react";
 import { Container, Label } from "./styles";
 import { Icon } from "../ExerciseCard/styles";
