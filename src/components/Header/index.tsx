@@ -1,6 +1,6 @@
 import { getAuth } from "firebase/auth";
 import swal from "sweetalert";
-import { Container, LogoImg, Pay, TopInfo, UserInfo, UserName } from "./styles";
+import { Container, LogoImg, TopInfo, UserInfo, UserName } from "./styles";
 import Logo from "../../assets/logo_g.jpg";
 import { GiExitDoor } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
