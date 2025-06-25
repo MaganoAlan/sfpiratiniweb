@@ -1,6 +1,6 @@
 import { getAuth } from "firebase/auth";
 import swal from "sweetalert";
-import { Container, LogoImg, TopInfo, UserInfo, UserName } from "./styles";
+import { Container, LogoImg, Pay, TopInfo, UserInfo, UserName } from "./styles";
 import Logo from "../../assets/logo_g.jpg";
 import { GiExitDoor } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +38,7 @@ export default function Header({ userName, monthly }: Props) {
         <UserInfo>
           <h2>Studio Fitness Piratini</h2>
           <UserName>Olá, {userName}</UserName>
-          <UserName>Sua mensalidade vence todo dia {monthly}</UserName>
+          <UserName>Sua mensalidade vence todo dia {monthly} </UserName>
         </UserInfo>
       </TopInfo>
     </Container>

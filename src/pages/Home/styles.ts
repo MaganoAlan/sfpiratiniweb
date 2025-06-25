@@ -49,3 +49,8 @@ export const InfoText = styled.div`
   text-align: center;
   font-weight: bolder;
 `;
+
+export const BtnContainer = styled.div`
+  width: 40%;
+  margin: 1% auto;
+`;

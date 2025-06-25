@@ -1,6 +1,12 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
-import { Container, InfoContainer, InfoText, ShortCuts } from "./styles";
+import {
+  BtnContainer,
+  Container,
+  InfoContainer,
+  InfoText,
+  ShortCuts,
+} from "./styles";
 import { getAuth } from "firebase/auth";
 import {
   getFirestore,
@@ -21,10 +27,13 @@ import { FiChrome } from "react-icons/fi";
 import { MdOutlineWaterDrop } from "react-icons/md";
 import { BiDumbbell } from "react-icons/bi";
 import { CustomCarousel } from "../../components/Carousel";
+import DefaultButton from "../../components/DefaultButton";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
   const auth = getAuth();
   const firestore = getFirestore();
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [isLoading, setIsloading] = useState(true);
   const [uid, setUid] = useState<any>("");
@@ -109,6 +118,13 @@ export function Home() {
       ) : (
         <Container>
           <Header userName={userName} monthly={monthly} />
+
+          <BtnContainer>
+            <DefaultButton
+              onClick={() => navigate("/pagamento")}
+              title="Pagar Mensalidade"
+            />
+          </BtnContainer>
 
           {anounces?.length > 0 && <CustomCarousel anounces={anounces} />}
 
