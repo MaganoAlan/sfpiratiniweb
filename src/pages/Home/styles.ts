@@ -10,7 +10,7 @@ export const DefaultBody = styled.div`
 
 export const Container = styled.div`
   //width: 100%;
-  height: 100vh;
+  height: 98vh;
   margin: auto;
   display: flex;
   flex-direction: column;
