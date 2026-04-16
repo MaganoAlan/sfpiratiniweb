@@ -1,9 +1,11 @@
-import { getAuth } from "firebase/auth";
-import swal from "sweetalert";
 import { Container, LogoImg, TopInfo, UserInfo, UserName } from "./styles";
-import Logo from "../../assets/logo_g.jpg";
-import { GiExitDoor } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
+import logoDefault from "../../assets/logos/logo_oficial_padrao.jpeg";
+import logoJaneiro from "../../assets/logos/janeiro_ano_novo.jpeg";
+import logoAbril from "../../assets/logos/abril_autismo.png";
+import logoSetembro from "../../assets/logos/setembro_amarelo.png";
+import logoOutubro from "../../assets/logos/outubro_rosa.png";
+import logoNovembro from "../../assets/logos/novembro_azul.png";
+import logoDezembro from "../../assets/logos/dezembro_natal.jpeg";
 
 type Props = {
   userName: string;
@@ -11,30 +13,34 @@ type Props = {
 };
 
 export default function Header({ userName, monthly }: Props) {
-  const auth = getAuth();
-  const navigate = useNavigate();
+  let currentLogo = logoDefault;
 
-  function handleSignOut() {
-    swal({
-      title: "Sair do App?",
-      text: "Tem certeza que deseja sair do app?",
-      icon: "warning",
-      dangerMode: true,
-      buttons: ["Cancelar", true],
-    }).then((sair) => {
-      if (sair) {
-        auth.signOut().then(() => {
-          swal("Você foi desconectado");
-          navigate("/");
-        });
-      }
-      return;
-    });
+  function getCurrentLogo() {
+    const currentMonth = new Date().getMonth() + 1;
+    switch (currentMonth) {
+      case 1:
+        return logoJaneiro;
+      case 4:
+        return logoAbril;
+      case 9:
+        return logoSetembro;
+      case 10:
+        return logoOutubro;
+      case 11:
+        return logoNovembro;
+      case 12:
+        return logoDezembro;
+      default:
+        return logoDefault;
+    }
   }
+
+  currentLogo = getCurrentLogo();
+
   return (
     <Container>
       <TopInfo>
-        <LogoImg src={Logo} />
+        <LogoImg src={currentLogo} />
         <UserInfo>
           <h2>Studio Fitness Piratini</h2>
           <UserName>Olá, {userName}</UserName>
