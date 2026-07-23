@@ -8,11 +8,13 @@ import { Envelope, Key } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { LoginCard } from "../Login/styles";
+import Loader from "../../components/Loader";
 
 export function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const auth = getAuth();
   const navigate = useNavigate();
@@ -26,19 +28,26 @@ export function SignUp() {
       Swal.fire("As senhas não são iguais!");
       return;
     }
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("user", user);
         Swal.fire("Usuário criado com sucesso!");
+        setIsLoading(false);
         navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("error", errorCode, errorMessage);
+        setIsLoading(false);
         Swal.fire("Algo deu errado");
       });
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (

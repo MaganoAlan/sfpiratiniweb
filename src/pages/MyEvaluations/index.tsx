@@ -1,7 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Container, Image, SelectContainer } from "./styles";
+import {
+  Container,
+  Image,
+  LabelSpinner,
+  SelectContainer,
+  SpinnerContainer,
+} from "./styles";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
-import DefaultInput from "../../components/DefaultInput";
 import { getAuth } from "firebase/auth";
 import {
   collection,
@@ -17,10 +22,7 @@ import {
   list,
   listAll,
 } from "firebase/storage";
-import DefaultButton from "../../components/DefaultButton";
 import { DefaultSelect } from "../../components/DefaultSelect";
-import Swal from "sweetalert2";
-import { SpinnerContainer } from "../Login/styles";
 import { Spinner } from "react-bootstrap";
 
 export function MyEvaluations() {
@@ -35,6 +37,7 @@ export function MyEvaluations() {
   const [path, setPath] = useState<any>("");
   const [url, setUrl] = useState<any>("");
   const [nextEval, setNextEval] = useState<any>("");
+  const [isLoading, setIsLoading] = useState<any>(false);
 
   useEffect(() => {
     const user = auth.currentUser?.displayName;
@@ -84,7 +87,9 @@ export function MyEvaluations() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     async function teste() {
+      setUrl("");
       const listRef = ref(storage, selectedDate);
       const response = await list(listRef, { maxResults: 100 });
       //("response", response.items[0].fullPath);
@@ -97,6 +102,7 @@ export function MyEvaluations() {
           //Swal.fire("Opção de download de avaliação indisponível no momento!");
         });
       }
+      setIsLoading(false);
     }
     teste();
   }, [mat, selectedDate, path]);
@@ -133,6 +139,12 @@ export function MyEvaluations() {
       ) : (
         <SpinnerContainer>
           <Spinner variant="primary" />
+        </SpinnerContainer>
+      )}
+      {isLoading && (
+        <SpinnerContainer>
+          <Spinner variant="primary" />
+          <LabelSpinner>Carregando avaliação...</LabelSpinner>
         </SpinnerContainer>
       )}
       {url ? <Image src={url} alt="avaliação física" /> : ""}

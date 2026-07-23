@@ -30,3 +30,18 @@ export const SelectContainer = styled.div`
     margin-left: 2%;
   }
 `;
+
+export const LabelSpinner = styled.div`
+  text-align: center;
+  margin-top: 5%;
+  font-size: 18px;
+  font-weight: 500;
+`;
+
+export const SpinnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+`;
