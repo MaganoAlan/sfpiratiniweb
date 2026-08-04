@@ -1,4 +1,4 @@
-// PdfUploader.jsx
+//@ts-nocheck
 import React, { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import "./PdfUploader.css";

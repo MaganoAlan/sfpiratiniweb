@@ -27,10 +27,7 @@ declare module "styled-components" {
         100: string;
       };
     };
-    text: {
-      primary: string,
-      secondary: string,
-    },
+    
     fonts: {
       varela: string;
       roboto: string;
