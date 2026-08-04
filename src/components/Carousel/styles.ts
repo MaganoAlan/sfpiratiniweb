@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: red;
+  background-color: ${({ theme }) => theme.colors.primary[600]};
+  margin: auto;
+  border-radius: 1rem;
 `;
 
 export const Image = styled.img`
@@ -17,8 +19,8 @@ export const Image = styled.img`
 
 export const Teste = styled.div`
   min-height: 10rem;
-  background-color: ${({ theme }) => theme.colors.primary[600]};
-  width: 100%;
+  width: 40%;
+  margin: auto;
 `;
 
 export const Sub = styled.div`

@@ -8,8 +8,9 @@ import { GiExitDoor } from "react-icons/gi";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { CloudArrowUp, Trash } from "phosphor-react";
 
-export function Footer() {
+export function Footer({ userName }: { userName: string }) {
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -32,25 +33,38 @@ export function Footer() {
   }
   return (
     <Container>
-      <IconContainer onClick={() => navigate("/minhas-avaliacoes")}>
-        <TbGauge size={26} />
-        <IconText>Avaliações</IconText>
-      </IconContainer>
-
-      <IconContainer onClick={() => navigate("/aula-de-sabado")}>
-        <BsCalendarPlus size={26} />
-        <IconText>Agendar</IconText>
-      </IconContainer>
-
-      <IconContainer onClick={() => navigate("/cancelar-aula")}>
-        <BsCalendarX size={26} />
-        <IconText>Cancelar</IconText>
-      </IconContainer>
-
-      <IconContainer onClick={() => navigate("/lista-exercicios")}>
-        <BiDumbbell size={26} />
-        <IconText>Exercícios</IconText>
-      </IconContainer>
+      {userName.toUpperCase() !== "WAGNER CARDOSO" ? (
+        <>
+          {" "}
+          <IconContainer onClick={() => navigate("/minhas-avaliacoes")}>
+            <TbGauge size={26} />
+            <IconText>Avaliações</IconText>
+          </IconContainer>
+          <IconContainer onClick={() => navigate("/aula-de-sabado")}>
+            <BsCalendarPlus size={26} />
+            <IconText>Agendar</IconText>
+          </IconContainer>
+          <IconContainer onClick={() => navigate("/cancelar-aula")}>
+            <BsCalendarX size={26} />
+            <IconText>Cancelar</IconText>
+          </IconContainer>
+          <IconContainer onClick={() => navigate("/lista-exercicios")}>
+            <BiDumbbell size={26} />
+            <IconText>Exercícios</IconText>
+          </IconContainer>
+        </>
+      ) : (
+        <>
+          <IconContainer onClick={() => navigate("/uploads")}>
+            <CloudArrowUp size={26} />
+            <IconText>Uploads</IconText>
+          </IconContainer>
+          <IconContainer onClick={() => navigate("/delete-avaliacoes")}>
+            <Trash size={26} />
+            <IconText>Deletar</IconText>
+          </IconContainer>
+        </>
+      )}
 
       <Link>
         <IconContainer>

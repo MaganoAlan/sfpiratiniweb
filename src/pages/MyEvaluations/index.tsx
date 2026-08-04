@@ -119,7 +119,7 @@ export function MyEvaluations() {
       {/* <span>Matricula:</span>
       <DefaultInput value={mat} onChange={() => {}} />
       <DefaultButton title="Ver datas" onClick={getDates} /> */}
-      {evalDates ? (
+      {evalDates && (
         <SelectContainer>
           <span>Selecione a data:</span>
           <DefaultSelect
@@ -136,10 +136,6 @@ export function MyEvaluations() {
               ))}
           </DefaultSelect>
         </SelectContainer>
-      ) : (
-        <SpinnerContainer>
-          <Spinner variant="primary" />
-        </SpinnerContainer>
       )}
       {isLoading && (
         <SpinnerContainer>

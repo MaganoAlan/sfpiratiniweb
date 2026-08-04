@@ -26,6 +26,7 @@ export const IconText = styled.span`
   text-align: center;
   font-size: 0.8rem;
   padding-top: 0.5rem;
+  font-weight: bolder;
 `;
 
 export const Text = styled.span`

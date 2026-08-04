@@ -32,7 +32,10 @@ export const UserInfo = styled.div`
   width: 100%;
 `;
 
-export const UserName = styled.div``;
+export const UserName = styled.div`
+display: flex;
+align-items: center;
+`;
 
 export const LogoImg = styled.img`
   width: 5vw;

@@ -7,6 +7,8 @@ import { Water } from "../pages/Water";
 import { Wellcome } from "../pages/Wellcome";
 import { ExerciseList } from "../pages/ExerciseList";
 import { Payment } from "../pages/Payment";
+import { Uploads } from "../pages/Uploads";
+import { Deletes } from "../pages/Deletar";
 
 export function AppRoutes() {
   return (
@@ -19,6 +21,8 @@ export function AppRoutes() {
       <Route path="/water" element={<Water />} />
       <Route path="/lista-exercicios" element={<ExerciseList />} />
       <Route path="/pagamento" element={<Payment />} />
+      <Route path="/uploads" element={<Uploads />} />
+      <Route path="/delete-avaliacoes" element={<Deletes />} />
     </Routes>
   );
 }

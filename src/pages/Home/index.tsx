@@ -159,7 +159,7 @@ export function Home() {
               icon={<FiChrome size={26} />}
             />
           </ShortCuts>
-          <Footer />
+          <Footer userName={userName} />
         </Container>
       )}
     </>

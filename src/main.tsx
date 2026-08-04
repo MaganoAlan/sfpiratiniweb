@@ -8,6 +8,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBEHYzEsiHi1_SadiiLLDh6hwj13sPS6D4",
@@ -25,9 +26,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <GlobalStyle />
       <Router />
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 const app = initializeApp(firebaseConfig);
+export const storage = getStorage(app);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);

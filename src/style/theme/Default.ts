@@ -1,17 +1,20 @@
 export default {
   colors: {
     primary: {
-      700: "",
+      700: "#1A2E40",
       600: "#4193FF",
-      400: "",
+      400: "#4D4D4D",
     },
     secondary: {
+      700: "#F26722",
       600: "#AFB1B0",
+      500: "#F9A825",
     },
     white: "#fff",
     green: {
       700: "#00875F",
       500: "#00B37E",
+      400: "#34A853 ",
       300: "#04D361",
     },
     gray: {
@@ -22,6 +25,10 @@ export default {
       300: "#7C7C8A",
       200: "#C4C4CC",
       100: "#E1E1E6",
+    },
+    text: {
+      primary: "#2D2D2D",
+      secondary: "#6C757D",
     },
   },
   fonts: {

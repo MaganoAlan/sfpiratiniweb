@@ -6,6 +6,7 @@ import logoSetembro from "../../assets/logos/setembro_amarelo.png";
 import logoOutubro from "../../assets/logos/outubro_rosa.png";
 import logoNovembro from "../../assets/logos/novembro_azul.png";
 import logoDezembro from "../../assets/logos/dezembro_natal.jpeg";
+import { Clock } from "phosphor-react";
 
 type Props = {
   userName: string;
@@ -44,7 +45,15 @@ export default function Header({ userName, monthly }: Props) {
         <UserInfo>
           <h2>Studio Fitness Piratini</h2>
           <UserName>Olá, {userName}</UserName>
-          <UserName>Sua mensalidade vence todo dia {monthly} </UserName>
+          <UserName>
+            Sua mensalidade vence todo dia {monthly}{" "}
+            <Clock
+              style={{ marginLeft: "5px" }}
+              size={14}
+              color="#fff"
+              weight="bold"
+            />
+          </UserName>
         </UserInfo>
       </TopInfo>
     </Container>
