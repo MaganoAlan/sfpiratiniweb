@@ -6,4 +6,4 @@
 - Menu anúncios;
 
 # Done
-- Nome do aluno ao subir a avaliação;
+- Nome do aluno ao subir a avaliação e ao deletar;
