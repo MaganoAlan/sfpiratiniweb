@@ -9,6 +9,7 @@ import { ExerciseList } from "../pages/ExerciseList";
 import { Payment } from "../pages/Payment";
 import { Uploads } from "../pages/Uploads";
 import { Deletes } from "../pages/Deletar";
+import { AdminDates } from "../pages/AdminDates";
 
 export function AppRoutes() {
   return (
@@ -23,6 +24,7 @@ export function AppRoutes() {
       <Route path="/pagamento" element={<Payment />} />
       <Route path="/uploads" element={<Uploads />} />
       <Route path="/delete-avaliacoes" element={<Deletes />} />
+      <Route path="/datas-administrativas" element={<AdminDates />} />
     </Routes>
   );
 }

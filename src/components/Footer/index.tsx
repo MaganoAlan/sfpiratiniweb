@@ -8,7 +8,7 @@ import { GiExitDoor } from "react-icons/gi";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import { CloudArrowUp, Trash } from "phosphor-react";
+import { Calendar, CloudArrowUp, Trash } from "phosphor-react";
 
 export function Footer({ userName }: { userName: string }) {
   const auth = getAuth();
@@ -54,6 +54,10 @@ export function Footer({ userName }: { userName: string }) {
         </>
       ) : (
         <>
+          <IconContainer onClick={() => navigate("/datas-administrativas")}>
+            <Calendar size={26} />
+            <IconText>Datas</IconText>
+          </IconContainer>
           <IconContainer onClick={() => navigate("/uploads")}>
             <CloudArrowUp size={26} />
             <IconText>Uploads</IconText>
