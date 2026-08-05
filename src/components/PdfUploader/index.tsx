@@ -1,8 +1,15 @@
 //@ts-nocheck
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import "./PdfUploader.css";
 import { storage } from "../../main";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 
 const PdfUploader = () => {
   const [file, setFile] = useState(null);
@@ -12,6 +19,9 @@ const PdfUploader = () => {
   const [progress, setProgress] = useState(0);
   const [downloadURL, setDownloadURL] = useState("");
   const [error, setError] = useState("");
+  const [studentName, setStudentName] = useState("");
+
+  const firestore = getFirestore();
 
   function dateMask(value: any) {
     return value
@@ -127,10 +137,24 @@ const PdfUploader = () => {
     if (fileInput) fileInput.value = "";
   };
 
+  async function getMat() {
+    const studentRef = collection(firestore, "alunos");
+    const q = query(studentRef, where("matricula", "==", mat));
+    let response: any = [];
+    const res = await getDocs(q);
+    res.forEach((doc) => {
+      const data = doc.data();
+      response.push(data);
+    });
+    setStudentName(response[0]?.nome);
+    console.log("response", response);
+  }
+  useEffect(() => {
+    getMat();
+  }, [mat]);
+
   return (
     <div className="pdf-uploader-container">
-      <h2>Upload de Avaliação</h2>
-
       <form onSubmit={handleUpload} className="upload-form">
         <div className="form-group">
           <label htmlFor="matricula">Matrícula do Aluno:</label>
@@ -144,6 +168,13 @@ const PdfUploader = () => {
             required
           />
         </div>
+
+        {studentName && (
+          <div className="form-group">
+            <label>Nome do Aluno:</label>
+            <span>{studentName}</span>
+          </div>
+        )}
 
         <div className="form-group">
           <label htmlFor="data">Data da Avaliação:</label>

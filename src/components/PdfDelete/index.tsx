@@ -10,6 +10,14 @@ import {
 import "./delete.css";
 import { storage } from "../../main";
 import Loader from "../Loader";
+import { Calendar, Eye, Trash } from "phosphor-react";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 
 export const PdfDelete = () => {
   const [file, setFile] = useState(null);
@@ -19,6 +27,9 @@ export const PdfDelete = () => {
   const [error, setError] = useState("");
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [studentName, setStudentName] = useState("");
+
+  const firestore = getFirestore();
 
   // Carregar lista de arquivos
   const loadFiles = async () => {
@@ -104,14 +115,30 @@ export const PdfDelete = () => {
     }
   };
 
+  async function getMat() {
+    const studentRef = collection(firestore, "alunos");
+    const q = query(studentRef, where("matricula", "==", mat));
+    let response: any = [];
+    const res = await getDocs(q);
+    res.forEach((doc) => {
+      const data = doc.data();
+      response.push(data);
+    });
+    setStudentName(response[0]?.nome);
+    console.log("response", response);
+  }
+  useEffect(() => {
+    getMat();
+  }, [mat]);
+
   return (
     <div className="pdf-uploader-container">
-      <h2>Deletar de Avaliação</h2>
       <form className="upload-form">
         <div className="form-group">
           <label htmlFor="matricula">Matrícula do Aluno:</label>
           <div className="search-group">
             <input
+              className="mat-inpt"
               type="text"
               id="matricula"
               value={mat}
@@ -120,14 +147,6 @@ export const PdfDelete = () => {
               disabled={uploading}
               required
             />
-            {/* <button
-              type="button"
-              onClick={handleSearch}
-              className="btn-search"
-              disabled={uploading || !mat}
-            >
-              Buscar
-            </button> */}
           </div>
         </div>
 
@@ -137,14 +156,17 @@ export const PdfDelete = () => {
       {/* Lista de arquivos */}
       {files.length > 0 && (
         <div className="files-list">
-          <h3>Arquivos encontrados ({files.length})</h3>
+          <div className="files-title">{studentName || "Aluno"}</div>
+          <div className="files-title">{files.length} avaliação(ões)</div>
           {loading && <p>Carregando...</p>}
 
           {/* Agrupar por data */}
           {[...new Set(files.map((f) => f.date))].map((date) => (
             <div key={date} className="date-group">
               <div className="date-header">
-                <h4>📅 Data: {date}</h4>
+                <h4 className="files-title">
+                  <Calendar /> Data: {date}
+                </h4>
               </div>
 
               {files
@@ -159,14 +181,14 @@ export const PdfDelete = () => {
                         rel="noopener noreferrer"
                         className="btn-view"
                       >
-                        👁️ Ver
+                        <Eye size={22} color="#ffffff" />
                       </a>
                       <button
                         onClick={() => handleDelete(file.fullPath, file.name)}
                         className="btn-delete"
                         disabled={loading}
                       >
-                        🗑️ Deletar
+                        <Trash size={20} color="#ffffff" />
                       </button>
                     </div>
                   </div>

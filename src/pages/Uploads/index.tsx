@@ -6,7 +6,7 @@ import PdfUploader from "../../components/PdfUploader";
 export function Uploads() {
   return (
     <Container>
-      <SecondaryHeader title="Admin Uploads" />
+      <SecondaryHeader title="Upload de Avaliações" />
       <PdfUploader />
     </Container>
   );

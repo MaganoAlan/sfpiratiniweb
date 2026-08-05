@@ -186,7 +186,7 @@
     margin: 20px;
     padding: 20px;
   }
-  
+
   .button-group {
     flex-direction: column;
   }
@@ -194,4 +194,50 @@
 
 .label-arquivo {
   overflow-wrap: anywhere;
+}
+
+.file-item {
+  width: 100%;
+}
+
+.btn-delete {
+  border: none;
+  background-color: #ff4d4d;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+
+.btn-view {
+  border: none;
+  background-color: #1976d2;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+
+.date-group {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 4%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.file-actions {
+  display: flex;
+  gap: 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.files-list {
+  margin-top: 5%;
+}
+
+.files-title {
+  text-align: center;
+  margin-bottom: 4%;
+}
+
+.mat-inpt {
+  width: 100%;
 }

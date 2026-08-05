@@ -183,10 +183,10 @@
 
 @media (max-width: 600px) {
   .pdf-uploader-container {
-    margin: 20px;
+    width: 100%;
     padding: 20px;
   }
-  
+
   .button-group {
     flex-direction: column;
   }

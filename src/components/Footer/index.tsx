@@ -35,7 +35,6 @@ export function Footer({ userName }: { userName: string }) {
     <Container>
       {userName.toUpperCase() !== "WAGNER CARDOSO" ? (
         <>
-          {" "}
           <IconContainer onClick={() => navigate("/minhas-avaliacoes")}>
             <TbGauge size={26} />
             <IconText>Avaliações</IconText>

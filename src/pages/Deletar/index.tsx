@@ -6,7 +6,7 @@ import { PdfDelete } from "../../components/PdfDelete";
 export function Deletes() {
   return (
     <Container>
-      <SecondaryHeader title="Admin Deletes" />
+      <SecondaryHeader title="Deletar Avaliações" />
       <PdfDelete />
     </Container>
   );
