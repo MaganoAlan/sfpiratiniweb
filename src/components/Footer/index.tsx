@@ -33,7 +33,7 @@ export function Footer({ userName }: { userName: string }) {
   }
   return (
     <Container>
-      {userName.toUpperCase() !== "ALAN MAGANO" ? (
+      {userName.toUpperCase() !== "WAGNER CARDOSO" ? (
         <>
           <IconContainer onClick={() => navigate("/minhas-avaliacoes")}>
             <TbGauge size={26} />
