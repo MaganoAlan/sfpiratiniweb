@@ -8,7 +8,7 @@ import { GiExitDoor } from "react-icons/gi";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import { Calendar, CloudArrowUp, Trash } from "phosphor-react";
+import { Calendar, CloudArrowUp, Megaphone, Trash } from "phosphor-react";
 
 export function Footer({ userName }: { userName: string }) {
   const auth = getAuth();
@@ -33,7 +33,7 @@ export function Footer({ userName }: { userName: string }) {
   }
   return (
     <Container>
-      {userName.toUpperCase() !== "WAGNER CARDOSO" ? (
+      {userName.toUpperCase() !== "ALAN MAGANO" ? (
         <>
           <IconContainer onClick={() => navigate("/minhas-avaliacoes")}>
             <TbGauge size={26} />
@@ -54,6 +54,10 @@ export function Footer({ userName }: { userName: string }) {
         </>
       ) : (
         <>
+          <IconContainer onClick={() => navigate("/anuncios")}>
+            <Megaphone size={26} />
+            <IconText>Anúncios</IconText>
+          </IconContainer>
           <IconContainer onClick={() => navigate("/datas-administrativas")}>
             <Calendar size={26} />
             <IconText>Datas</IconText>

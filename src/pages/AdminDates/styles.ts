@@ -5,7 +5,14 @@ type BtnProps = {
 };
 
 export const Container = styled.div`
+  margin: auto;
+  display: flex;
+  flex-direction: column;
   flex: 1;
+
+  @media (min-width: 700px) {
+    width: 45%;
+  }
 `;
 
 export const Card = styled.div`
@@ -61,4 +68,9 @@ export const Span = styled.span`
   font-weight: bold;
   text-align: center;
   margin-bottom: 2%;
+`;
+
+export const MainCard = styled.div`
+  width: 80%;
+  margin: 0 auto;
 `;

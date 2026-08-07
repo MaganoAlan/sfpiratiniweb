@@ -1,7 +1,8 @@
 import React from "react";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
-import { Container } from "../MyEvaluations/styles";
+
 import { PdfDelete } from "../../components/PdfDelete";
+import { Container } from "../AdminDates/styles";
 
 export function Deletes() {
   return (

@@ -1,9 +1,9 @@
 # Backlog
 - Edição de ficha do aluno;
-- Menu anúncios;
-- Modo desktop;
 
 # Done
+- Modo desktop;
+- Menu anúncios;
 - Adicionar data da próxima avaliação;
 - Adicionar data de vencimento da mensalidade;
 - Bloqueio e desbloqueio do aluno;

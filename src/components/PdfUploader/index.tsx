@@ -72,6 +72,7 @@ const PdfUploader = () => {
       timeZone: "UTC",
     });
     dataFormatada = dataFormatada.replaceAll("/", ".");
+    console.log("dataFormatada", dataFormatada);
     try {
       // Criar caminho no storage
       //@ts-ignore

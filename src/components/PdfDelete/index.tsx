@@ -18,6 +18,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import Swal from "sweetalert2";
 
 export const PdfDelete = () => {
   const [file, setFile] = useState(null);
@@ -77,42 +78,53 @@ export const PdfDelete = () => {
   // FUNÇÃO PARA DELETAR ARQUIVO
   const handleDelete = async (filePath, fileName) => {
     // Confirmar exclusão
-    if (
-      !window.confirm(`Tem certeza que deseja deletar o arquivo "${fileName}"?`)
-    ) {
-      return;
-    }
+    await Swal.fire({
+      title: "Excluir Arquivo?",
+      text: "Tem certeza que deseja excluir este arquivo?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, excluir!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+        try {
+          // Criar referência do arquivo no storage
+          const fileRef = ref(storage, filePath);
 
-    setLoading(true);
-    try {
-      // Criar referência do arquivo no storage
-      const fileRef = ref(storage, filePath);
+          // Verificar se o arquivo existe
+          try {
+            await getDownloadURL(fileRef);
+          } catch (error) {
+            if (error.code === "storage/object-not-found") {
+              setError("Arquivo não encontrado no servidor");
+              setLoading(false);
+              return;
+            }
+            throw error;
+          }
 
-      // Verificar se o arquivo existe
-      try {
-        await getDownloadURL(fileRef);
-      } catch (error) {
-        if (error.code === "storage/object-not-found") {
-          setError("Arquivo não encontrado no servidor");
+          // Deletar o arquivo
+          await deleteObject(fileRef);
+
+          // Remover da lista local
+          setFiles((prevFiles) =>
+            prevFiles.filter((f) => f.fullPath !== filePath),
+          );
+
+          Swal.fire({
+            title: "Arquivo excluído com sucesso!",
+            icon: "success",
+          });
+        } catch (error) {
+          console.error("Erro ao deletar arquivo:", error);
+          setError("Erro ao deletar o arquivo. Tente novamente.");
+        } finally {
           setLoading(false);
-          return;
         }
-        throw error;
       }
-
-      // Deletar o arquivo
-      await deleteObject(fileRef);
-
-      // Remover da lista local
-      setFiles((prevFiles) => prevFiles.filter((f) => f.fullPath !== filePath));
-
-      alert(`Arquivo "${fileName}" deletado com sucesso!`);
-    } catch (error) {
-      console.error("Erro ao deletar arquivo:", error);
-      setError("Erro ao deletar o arquivo. Tente novamente.");
-    } finally {
-      setLoading(false);
-    }
+    });
   };
 
   async function getMat() {

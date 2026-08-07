@@ -15,6 +15,7 @@ import {
   BlockButton,
   Card,
   Container,
+  MainCard,
   MatInput,
   ModifyButton,
   Span,
@@ -31,6 +32,14 @@ export function AdminDates() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const firestore = getFirestore();
+
+  const dateMask = (value: string) => {
+    return value
+      .replace(/\D/g, "") // Remove tudo o que não for número
+      .replace(/(\d{2})(\d)/, "$1.$2") // Adiciona o primeiro ponto após 2 dígitos
+      .replace(/(\d{2})(\d)/, "$1.$2") // Adiciona o segundo ponto após mais 2 dígitos
+      .replace(/(\d{4})(\d+?$)/, "$1"); // Limpa o restante se passar de 4 dígitos no ano
+  };
 
   async function changeStudentStatus() {
     let cache = mat;
@@ -183,49 +192,51 @@ export function AdminDates() {
   return (
     <Container>
       <SecondaryHeader title="Datas Administrativas" />
-      <Card>
-        <Span>Matrícula do aluno</Span>
-        <MatInput value={mat} onChange={(e) => setMat(e.target.value)} />
-      </Card>
-      <StudentLabel>Nome do aluno: {studentName}</StudentLabel>
-      <Card>
-        <Span>Data da próxima avaliação</Span>
-        <MatInput
-          value={evalDate}
-          onChange={(e) => setEvalDate(e.target.value)}
-        />
-        <ModifyButton
-          background={isLoading || !billDate ? "disabled" : "primary"}
-          disabled={isLoading || !evalDate}
-          onClick={changeEvalDate}
-        >
-          Alterar
-        </ModifyButton>
-      </Card>
-      <Card>
-        <Span>Data de vencimento</Span>
-        <MatInput
-          value={billDate}
-          onChange={(e) => setBillDate(e.target.value)}
-        />
-        <ModifyButton
-          background={isLoading || !billDate ? "disabled" : "primary"}
-          disabled={isLoading || !billDate}
-          onClick={changeBillDate}
-        >
-          Alterar
-        </ModifyButton>
-
-        {studentName && (
-          <BlockButton
-            background={isActive ? "" : "block"}
-            disabled={isLoading}
-            onClick={changeStudentStatus}
+      <MainCard>
+        <Card>
+          <Span>Matrícula do aluno</Span>
+          <MatInput value={mat} onChange={(e) => setMat(e.target.value)} />
+        </Card>
+        <StudentLabel>Nome do aluno: {studentName}</StudentLabel>
+        <Card>
+          <Span>Data da próxima avaliação</Span>
+          <MatInput
+            value={evalDate}
+            onChange={(e) => setEvalDate(dateMask(e.target.value))}
+          />
+          <ModifyButton
+            background={isLoading || !billDate ? "disabled" : "primary"}
+            disabled={isLoading || !evalDate}
+            onClick={changeEvalDate}
           >
-            {isActive ? "Bloquear aluno" : "Desbloquear aluno"}
-          </BlockButton>
-        )}
-      </Card>
+            Alterar
+          </ModifyButton>
+        </Card>
+        <Card>
+          <Span>Data de vencimento</Span>
+          <MatInput
+            value={billDate}
+            onChange={(e) => setBillDate(e.target.value)}
+          />
+          <ModifyButton
+            background={isLoading || !billDate ? "disabled" : "primary"}
+            disabled={isLoading || !billDate}
+            onClick={changeBillDate}
+          >
+            Alterar
+          </ModifyButton>
+
+          {studentName && (
+            <BlockButton
+              background={isActive ? "" : "block"}
+              disabled={isLoading}
+              onClick={changeStudentStatus}
+            >
+              {isActive ? "Bloquear aluno" : "Desbloquear aluno"}
+            </BlockButton>
+          )}
+        </Card>
+      </MainCard>
     </Container>
   );
 }
